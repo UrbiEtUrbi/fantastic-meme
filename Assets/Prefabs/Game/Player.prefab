@@ -481,7 +481,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  Size: 2.5
+  Size: 3.5
+  rotationSpeed: 50
   TimeToShow: 0.5
   TimeToHide: 0.5
   TimeToJump: 2.5

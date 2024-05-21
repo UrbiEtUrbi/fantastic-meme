@@ -80,8 +80,8 @@ public class Creature : Entity, IHealth
             return;
         }
         returnFromFixedUpdate = false;
-        _Animator.SetBool("Stunned", isStunned);
-        _Animator.SetBool("Frozen", isFrozen);
+      //  _Animator.SetBool("Stunned", isStunned);
+      //  _Animator.SetBool("Frozen", isFrozen);
 
 
         if (!Enabled)
@@ -91,7 +91,7 @@ public class Creature : Entity, IHealth
         }
         if (turningAround)
         {
-            _Animator.speed = 1;
+           // _Animator.speed = 1;
             turningAround = false;
             direction *= -1;
             art.flipX = !art.flipX;

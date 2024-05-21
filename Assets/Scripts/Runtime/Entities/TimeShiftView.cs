@@ -11,6 +11,9 @@ public class TimeShiftView : MonoBehaviour
     float Size;
 
     [SerializeField]
+    float rotationSpeed;
+
+    [SerializeField]
     float TimeToShow, TimeToHide, TimeToJump, JumpTime;
 
     float timer, timerJump;
@@ -20,6 +23,8 @@ public class TimeShiftView : MonoBehaviour
     bool isAnimating;
 
     bool isJumping;
+
+    
 
     AnimationCurve InverseAnimationCurveShow, InverseAnimationCurveHide;
 
@@ -93,12 +98,17 @@ public class TimeShiftView : MonoBehaviour
             
             if (isShowing)
             {
+                var t = 1f - timer / TimeToShow;
+                transform.Rotate(new Vector3(0, 0, t*Time.deltaTime * rotationSpeed));
                 transform.localScale = Vector3.one * AnimationCurveShow.Evaluate(1f - timer / TimeToShow) * Size;
             }
             else
             {
+                var t = 1f - timer / TimeToHide;
+                transform.Rotate(new Vector3(0, 0, -(1-t)*Time.deltaTime * rotationSpeed));
                 transform.localScale = Vector3.one * AnimationCurveHide.Evaluate(1f - timer / TimeToHide) * Size;
             }
+
 
             if (timer <= 0)
             {
@@ -108,6 +118,7 @@ public class TimeShiftView : MonoBehaviour
         }
         if (isShowing)
         {
+            transform.Rotate(new Vector3(0, 0, (timerJump / TimeToJump) *Time.deltaTime * rotationSpeed));
             timerJump -= Time.deltaTime;
 
             if (timerJump <= 0)
@@ -119,10 +130,12 @@ public class TimeShiftView : MonoBehaviour
                 isShowing = false;
                 timer = JumpTime;
             }
+           
         }
 
         if (isJumping)
         {
+            transform.Rotate(new Vector3(0, 0, -2*Time.deltaTime * rotationSpeed));
             timer -= Time.deltaTime;
             transform.localScale = Vector3.one * (AnimationCurveJump.Evaluate(1f - timer / JumpTime) * 20 + Size);
             if (timer <= 0)
