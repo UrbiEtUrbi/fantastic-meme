@@ -11,12 +11,15 @@ public class TilemapManager : MonoBehaviour
     [SerializeField]
     List<TilemapRenderer> Present;
 
-    bool isPresentNow;
+   
 
 
     private void Start()
     {
-        isPresentNow = true;
+
+
+        ControllerGame.TimeManager.OnSetGlobalTime.AddListener(Flip);
+
         for (int i = 0; i < Past.Count; i++)
         {
             Past[i].sortingOrder = i;
@@ -30,11 +33,10 @@ public class TilemapManager : MonoBehaviour
         }
     }
 
-    public void Flip()
+    public void Flip(TimeZone time)
     {
-        if (isPresentNow)
+        if (time == TimeZone.Past)
         {
-            isPresentNow = false;
             for (int i = 0; i < Past.Count; i++)
             {
                 Past[i].sortingOrder = i + Present.Count;
@@ -49,7 +51,6 @@ public class TilemapManager : MonoBehaviour
         }
         else
         {
-            isPresentNow = true;
             for (int i = 0; i < Past.Count; i++)
             {
                 Past[i].sortingOrder = i;
@@ -63,4 +64,6 @@ public class TilemapManager : MonoBehaviour
             }
         }
     }
+
+  
 }

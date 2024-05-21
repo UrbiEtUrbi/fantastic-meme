@@ -66,6 +66,10 @@ public class ControllerGame : ControllerLocal
     ControllerDialog m_ControllerDialog;
     public static ControllerDialog ControllerDialog => Instance.m_ControllerDialog;
 
+
+    TimeManager m_TimeManager;
+    public static TimeManager TimeManager => Instance.m_TimeManager;
+
     #endregion
 
 
@@ -117,6 +121,7 @@ public class ControllerGame : ControllerLocal
         m_ControllerRooms = GetComponent<ControllerRooms>();
         m_ControllerPickups = GatherComponent<ControllerPickups>();
         m_ControllerDialog = GetComponent<ControllerDialog>();
+        m_TimeManager = GetComponent<TimeManager>();
 
         if (ControllerLoadingScene.Instance.HasSave)
         {

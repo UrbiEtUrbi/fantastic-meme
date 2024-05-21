@@ -34,6 +34,14 @@ public class Rusher : Creature
         if (returnFromFixedUpdate)
         {
             return;
+            
+        }
+
+        if (!ControllerGame.TimeManager.IsTimeShiftActive && ControllerGame.TimeManager.TimeZone != CurrentTimeZone)
+        {
+            rb.velocity = default;
+
+            return;
         }
 
 
@@ -43,6 +51,7 @@ public class Rusher : Creature
             waiting = true;
             m_Velocity = default;
             rb.velocity = default;
+            rb.simulated = false;
         }
 
 
@@ -55,12 +64,14 @@ public class Rusher : Creature
 
         if (PauseTimer >= 0)
         {
+
             return;
         }
 
         if (waiting)
         {
             waiting = false;
+            rb.simulated = true;
             m_RushTimer = RushTime;
         }
 

@@ -12,6 +12,9 @@ public class ControllerEntities : MonoBehaviour
 
 
 
+    public List<Entity> GetEntities => Entities;
+
+
     public void RegisterEntity(Entity entity)
     {
         Entities.Add(entity);

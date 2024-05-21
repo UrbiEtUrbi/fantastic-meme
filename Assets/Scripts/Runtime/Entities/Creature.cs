@@ -11,6 +11,8 @@ public class Creature : Entity, IHealth
     int MaxHealth;
 
 
+    public TimeZone CurrentTimeZone;
+
     int currentHealth;
 
 
@@ -34,6 +36,7 @@ public class Creature : Entity, IHealth
     [SerializeField]
     SpriteRenderer art;
 
+    
 
     [SerializeField]
     protected Vector2 frozenSize;
@@ -150,7 +153,23 @@ public class Creature : Entity, IHealth
         }
     }
 
-   
+
+    public void SetTime(TimeZone TimeZone)
+    {
+        this.CurrentTimeZone = TimeZone;
+        
+    }
+
+    public void UpdateMaskAfterJump()
+    {
+        art.maskInteraction = ControllerGame.TimeManager.TimeZone == CurrentTimeZone ? SpriteMaskInteraction.None : SpriteMaskInteraction.VisibleInsideMask;
+    }
+
+    public void UpdateMaskBeforeJump()
+    {
+
+        art.maskInteraction = ControllerGame.TimeManager.TimeZone == CurrentTimeZone ? SpriteMaskInteraction.VisibleOutsideMask : SpriteMaskInteraction.VisibleInsideMask;
+    }
 
     public virtual void Die()
     {

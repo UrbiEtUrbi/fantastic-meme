@@ -24,6 +24,9 @@ public class TimeShiftView : MonoBehaviour
 
     bool isJumping;
 
+    [SerializeField]
+    GameObject colliderObject;
+
     
 
     AnimationCurve InverseAnimationCurveShow, InverseAnimationCurveHide;
@@ -49,14 +52,12 @@ public class TimeShiftView : MonoBehaviour
 
     public void Show()
     {
-        
-
-        Debug.Log("show");
         if (isShowing || isJumping)
         {
             return;
         }
         isShowing = true;
+        ControllerGame.TimeManager.IsTimeShiftActive = true;
         if (timer <= 0)
         {
             timer = TimeToShow;
@@ -72,7 +73,6 @@ public class TimeShiftView : MonoBehaviour
 
     public void Hide()
     {
-        Debug.Log("hide");
         if (!isShowing || isJumping)
         {
             return;
@@ -91,7 +91,6 @@ public class TimeShiftView : MonoBehaviour
 
     private void Update()
     {
-
         if (isAnimating)
         {
             timer -= Time.deltaTime;
@@ -112,6 +111,10 @@ public class TimeShiftView : MonoBehaviour
 
             if (timer <= 0)
             {
+                if (!isShowing)
+                {
+                    ControllerGame.TimeManager.IsTimeShiftActive = false;
+                }
                 isAnimating = false;
             }
 
@@ -123,12 +126,15 @@ public class TimeShiftView : MonoBehaviour
 
             if (timerJump <= 0)
             {
-                Debug.Log($"start jumping");
+
                 isAnimating = false;
 
                 isJumping = true;
                 isShowing = false;
                 timer = JumpTime;
+                ControllerGame.TimeManager.BeforeJump();
+               
+                colliderObject.SetActive(false);
             }
            
         }
@@ -143,7 +149,9 @@ public class TimeShiftView : MonoBehaviour
                 isJumping = false;
                 isShowing = false;
                 transform.localScale = default;
-                FindAnyObjectByType<TilemapManager>().Flip();
+                ControllerGame.TimeManager.IsTimeShiftActive = false;
+                ControllerGame.TimeManager.Flip();
+                colliderObject.SetActive(true);
             }
         }
     }

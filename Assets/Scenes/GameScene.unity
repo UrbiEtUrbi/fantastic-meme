@@ -1148,6 +1148,7 @@ GameObject:
   - component: {fileID: 2089064011}
   - component: {fileID: 2089064012}
   - component: {fileID: 2089064013}
+  - component: {fileID: 2089064014}
   m_Layer: 0
   m_Name: ControllerGame
   m_TagString: Untagged
@@ -1260,6 +1261,22 @@ MonoBehaviour:
   Prefab: {fileID: 5112462114726471866, guid: e2f33cf6fadba494a924c3722433759f, type: 3}
   CanvasPrefab: {fileID: 5112462114726471866, guid: c5dee55d0d439435e95fe698a64c9883, type: 3}
   c: {fileID: 2085012342}
+--- !u!114 &2089064014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089064008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca3b8c3c14e474e05a5103868da9f411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeZone: 0
+  OnSetGlobalTime:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
