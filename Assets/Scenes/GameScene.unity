@@ -1274,6 +1274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeZone: 0
+  IsTimeShiftActive: 0
   OnSetGlobalTime:
     m_PersistentCalls:
       m_Calls: []

@@ -63,6 +63,27 @@ public class TimeManager : MonoBehaviour
 
     }
 
+    public void UnShiftEnemies()
+    {
+        foreach (var c in CreaturesInTimeShift)
+        {
+            c.SetTime(TimeZone);
+            c.UpdateMaskAfterJump();
+        }
+    }
+
+    public void ShiftEnemies()
+    {
+
+        var otherTime = TimeZone == TimeZone.Present ? TimeZone.Past : TimeZone.Present;
+
+        foreach (var c in CreaturesInTimeShift)
+        {
+            c.SetTime(otherTime);
+            c.UpdateMaskBeforeJump();
+        }
+    }
+
     public void AddToTimeshift(Creature c)
     {
         if (!CreaturesInTimeShift.Contains(c) && !IsJumping)

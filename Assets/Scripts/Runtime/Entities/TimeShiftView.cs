@@ -64,6 +64,7 @@ public class TimeShiftView : MonoBehaviour
         }
         else
         {
+            ControllerGame.TimeManager.UnShiftEnemies();
             timer = InverseAnimationCurveHide.Evaluate(1 - timer / TimeToHide)*TimeToShow;
         }
         timerJump = TimeToJump;
@@ -79,6 +80,7 @@ public class TimeShiftView : MonoBehaviour
         }
         if (timer <= 0)
         {
+            ControllerGame.TimeManager.ShiftEnemies();
             timer = TimeToHide;
         }
         else
@@ -113,6 +115,7 @@ public class TimeShiftView : MonoBehaviour
             {
                 if (!isShowing)
                 {
+                   
                     ControllerGame.TimeManager.IsTimeShiftActive = false;
                 }
                 isAnimating = false;
