@@ -159,7 +159,10 @@ public abstract class PickupHandler : MonoBehaviour
 
     protected void SetGlobalTime(TimeZone zone)
     {
-        StopPickingUp();
+        if (StartTimeZone != zone)
+        {
+            StopPickingUp();
+        }
         Bar.fillAmount = 0;
         switch (TimeShiftBehaviour)
         {
