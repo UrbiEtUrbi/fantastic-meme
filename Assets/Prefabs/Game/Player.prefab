@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxSpeed: 5
+  MaxSpeedAbility: 2
   Acceleration: 1
   Drag: 0.9
   lockOrientation: 0
@@ -488,6 +489,7 @@ MonoBehaviour:
   TimeToHide: 0.5
   TimeToJump: 2.5
   JumpTime: 0.5
+  isShowing: 0
   colliderObject: {fileID: 7028313592722706213}
 --- !u!1 &7028313592722706213
 GameObject:

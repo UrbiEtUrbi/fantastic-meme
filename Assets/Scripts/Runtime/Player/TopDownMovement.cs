@@ -12,6 +12,9 @@ public class TopDownMovement : MonoBehaviour
     float MaxSpeed;
 
     [SerializeField]
+    float MaxSpeedAbility;
+
+    [SerializeField]
     float Acceleration;
 
     [EndGroup, SerializeField]
@@ -36,7 +39,7 @@ public class TopDownMovement : MonoBehaviour
     [SerializeField]
     TimeShiftView Mask;
 
-
+    
 
     [HideInInspector]
     public bool Slowing;
@@ -95,9 +98,9 @@ public class TopDownMovement : MonoBehaviour
             m_Velocity += m_Speed;
         }
 
+        var maxSpeed = Mask.isShowing ? MaxSpeedAbility : MaxSpeed;
 
-
-        m_Velocity = m_Velocity.normalized * Mathf.Min(m_Velocity.magnitude, MaxSpeed);
+        m_Velocity = m_Velocity.normalized * Mathf.Min(m_Velocity.magnitude, maxSpeed);
 
 
         m_Rb.velocity = m_Velocity;

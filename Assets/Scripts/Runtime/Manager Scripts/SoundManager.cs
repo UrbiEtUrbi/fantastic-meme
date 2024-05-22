@@ -115,7 +115,7 @@ public class SoundManager : GenericSingleton<SoundManager>
     {
         
         var idx = CanPlay(soundName);
-        Debug.Log($"{idx} {soundName}");
+      
         if (idx == -1)
         {
             return;

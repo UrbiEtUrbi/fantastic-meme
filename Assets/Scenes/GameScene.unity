@@ -1149,6 +1149,7 @@ GameObject:
   - component: {fileID: 2089064012}
   - component: {fileID: 2089064013}
   - component: {fileID: 2089064014}
+  - component: {fileID: 2089064015}
   m_Layer: 0
   m_Name: ControllerGame
   m_TagString: Untagged
@@ -1278,6 +1279,22 @@ MonoBehaviour:
   OnSetGlobalTime:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2089064015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089064008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6766fd5a6d24a59913934c7974c385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PickedUp: []
+  ItemPrefabs:
+  - {fileID: 130705653980398435, guid: 5c53db146f4a04accbd68099f47130b3, type: 3}
+  - {fileID: 130705653980398435, guid: 5a274e8f55ef84f0bb9c9528a917ccec, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

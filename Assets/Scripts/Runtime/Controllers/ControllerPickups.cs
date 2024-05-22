@@ -6,6 +6,9 @@ public class ControllerPickups : MonoBehaviour
 {
     public List<string> PickedUp = new();
 
+    [SerializeField]
+    public List<Item> ItemPrefabs;
+
 
     public void Pickup(Pickup pickup)
     {
@@ -16,40 +19,48 @@ public class ControllerPickups : MonoBehaviour
             PickedUp.Add(pickup.Id);
         }
 
-        switch (pickup.PickupType)
-        {
-            case PickupType.MaxHealth:
-                ControllerGame.Instance.IncreaseMax(1);
-                ControllerGame.Player.ChangeHealth(1);
-                break;
+        //switch (pickup.PickupType)
+        //{
+        //    case PickupType.MaxHealth:
+        //        ControllerGame.Instance.IncreaseMax(1);
+        //        ControllerGame.Player.ChangeHealth(1);
+        //        break;
 
-            case PickupType.Heart:
-                ControllerGame.Player.ChangeHealth(1);
-                break;
+        //    case PickupType.Heart:
+        //        ControllerGame.Player.ChangeHealth(1);
+        //        break;
 
-            case PickupType.MaxStamina:
-                ControllerGame.Instance.Win();
-                break;
+        //    case PickupType.MaxStamina:
+        //        ControllerGame.Instance.Win();
+        //        break;
 
-            case PickupType.StaminaCharge:
-                break;
+        //    case PickupType.StaminaCharge:
+        //        break;
 
-            case PickupType.Spike:
-                ControllerGame.Instance.HasSpike = true;
-                break;
+        //    case PickupType.Spike:
+        //        ControllerGame.Instance.HasSpike = true;
+        //        break;
 
-            case PickupType.Stick:
-                ControllerGame.Instance.HasStick = true;
-                break;
+        //    case PickupType.Stick:
+        //        ControllerGame.Instance.HasStick = true;
+        //        break;
 
-            case PickupType.IceMelee:
-                ControllerGame.Instance.HasIceMelee = true;
-                break;
+        //    case PickupType.IceMelee:
+        //        ControllerGame.Instance.HasIceMelee = true;
+        //        break;
 
-        }
+        //}
 
         ControllerGame.Instance.Save();
 
+    }
+
+
+    public Item Pickup(PickupType pickupType)
+    {
+
+        var item = ItemPrefabs.Find(x => x.PickupType == pickupType);
+        return Instantiate(item);
     }
 
     public bool HasPickedUp(Pickup pickup)

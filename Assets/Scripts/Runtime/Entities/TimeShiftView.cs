@@ -18,7 +18,7 @@ public class TimeShiftView : MonoBehaviour
 
     float timer, timerJump;
 
-    bool isShowing;
+    public bool isShowing;
 
     bool isAnimating;
 

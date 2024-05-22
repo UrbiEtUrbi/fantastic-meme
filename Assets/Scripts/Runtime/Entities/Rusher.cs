@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Rusher : Creature
@@ -21,11 +22,21 @@ public class Rusher : Creature
 
     bool waiting;
 
+    public bool targetCabbage;
+
+    CabbagePlot target;
+
+
+    List<CabbagePlot> cabbagePlots;
 
     protected override void Awake()
     {
         base.Awake();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        if (targetCabbage)
+        {
+            cabbagePlots = FindObjectsByType<CabbagePlot>(sortMode: FindObjectsSortMode.None).ToList();
+        }
     }
 
     protected override void FixedUpdate()
@@ -45,7 +56,7 @@ public class Rusher : Creature
         }
 
 
-        if (m_RushTimer <= 0 && !waiting)
+        if (RushTime > 0 && m_RushTimer <= 0 && !waiting)
         {
             PauseTimer = PauseTime;
             waiting = true;
@@ -54,8 +65,36 @@ public class Rusher : Creature
             rb.simulated = false;
         }
 
-
         var dir = (ControllerGame.Player.transform.position - transform.position).normalized;
+        if (targetCabbage)
+        {
+            if (CurrentTimeZone == TimeZone.Present)
+            {
+                if (target == null)
+                {
+                    cabbagePlots.OrderBy(x => Vector3.Distance(x.transform.position, transform.position));
+                    foreach (var c in cabbagePlots)
+                    {
+                        if (c.View != null)
+                        {
+                            target = c;
+
+                        }
+                    }
+                }
+                if (target != null && target.View != null)
+                {
+
+                    dir = (target.transform.position - transform.position).normalized;
+                }
+            }
+            else
+            {
+                target = null;
+            }
+        }
+
+        
 
         if (direction != Mathf.Sign(dir.x))
         {

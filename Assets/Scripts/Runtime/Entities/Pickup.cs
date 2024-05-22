@@ -32,7 +32,6 @@ public class Pickup : MonoBehaviour
             return;
         }
         startPos = transform.position;
-
     }
 
     public PickupType PickupType;
@@ -61,11 +60,8 @@ public class Pickup : MonoBehaviour
 [System.Serializable]
 public enum PickupType
 {
-    MaxHealth,
-    Heart,
-    MaxStamina,
-    StaminaCharge,
-    Spike,
-    Stick,
-    IceMelee
+    None,
+    Seed,
+    Plant,
+    WateringCan
 }

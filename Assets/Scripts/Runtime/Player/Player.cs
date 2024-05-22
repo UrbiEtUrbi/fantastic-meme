@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IHealth
+public class Player : MonoBehaviour, IHealth, IPickupCollector
 {
 
     [SerializeField]
@@ -28,13 +28,19 @@ public class Player : MonoBehaviour, IHealth
     int currentHealth;
     public int CurrentHealth => currentHealth;
 
+    
+    PickupType CurrentPickup;
+    Item CurrentItem;
+
+
+
     void Awake() {
         movement = GetComponent<TopDownMovement>();
     }
 
 
-    
 
+  
     public void ChangeHealth(int amount)
     {
         if (amount < 0)
@@ -90,6 +96,23 @@ public class Player : MonoBehaviour, IHealth
     float frequency = 2f;
     float blinkTimer = 0;
 
+
+    public void Pickup(PickupType pickupType)
+    {
+        switch (pickupType)
+        {
+            case PickupType.Seed:
+
+                break;
+
+            case PickupType.Plant:
+
+                break;
+
+        }
+
+    }
+
     void Update()
     {
 
@@ -111,6 +134,11 @@ public class Player : MonoBehaviour, IHealth
         else
         {
             movement.Sprite.enabled = true;
+        }
+
+        if (CurrentItem != null)
+        {
+            CurrentItem.transform.localPosition = new Vector3(-0.4f * movement.Direction, 0.4f, 0);
         }
 
     }
@@ -171,6 +199,32 @@ public class Player : MonoBehaviour, IHealth
     public void ChangeHealth(int amount, AttackType type)
     {
         ChangeHealth(amount);
+    }
+
+
+    //interface implementation IPickupCollector
+    public bool CanPickup(PickupType pickupType)
+    {
+        return CurrentPickup == PickupType.None;
+    }
+
+    public void PickUp(PickupType pickupType)
+    {
+        CurrentItem = ControllerGame.ControllerPickups.Pickup(pickupType);
+        CurrentPickup = CurrentItem.PickupType;
+        CurrentItem.transform.SetParent(transform);
+        CurrentItem.transform.localPosition = new Vector3(-0.4f * movement.Direction, 0.4f, 0);
+    }
+
+
+    public PickupType GetPickupType => CurrentPickup;
+
+    public Item Place()
+    {
+        CurrentPickup = PickupType.None;
+        var item = CurrentItem;
+        CurrentItem = null;
+        return item;
     }
 
     void OnDrawGizmosSelected()
