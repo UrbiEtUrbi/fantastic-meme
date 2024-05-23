@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5894613925974513}
   - component: {fileID: 7324422448904334986}
   - component: {fileID: 895502673664279626}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ MonoBehaviour:
   SwordAttackSize: {x: 0, y: 0, z: 0}
   SpikeAttackSize: {x: 0, y: 0, z: 0}
   IFrames: 1
-  MaxHealth: 1
+  MaxHealth: 5
 --- !u!114 &5894613925974513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +73,7 @@ MonoBehaviour:
   Drag: 0.8
   lockOrientation: 0
   Mask: {fileID: 6772042948578239562}
+  knockForce: 10
   Slowing: 0
 --- !u!50 &7324422448904334986
 Rigidbody2D:
@@ -156,7 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7755612525273392863}
   - component: {fileID: 7692358031293127074}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2948012619522715875}
   - component: {fileID: 1297546748818177186}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +326,7 @@ GameObject:
   - component: {fileID: 3677787679761024208}
   - component: {fileID: 8683605404003625785}
   - component: {fileID: 6772042948578239562}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +503,7 @@ GameObject:
   - component: {fileID: 1776890034626503147}
   - component: {fileID: 6616725274470975660}
   - component: {fileID: 7354381548812247701}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TimeShiftCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

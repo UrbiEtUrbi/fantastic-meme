@@ -109,6 +109,10 @@ public abstract class PickupHandler : MonoBehaviour
 
         var candidate = collision.gameObject.GetComponent<IPickupCollector>();
 
+        if (candidate == null)
+        {
+            return;
+        }
         bool timeConditionOk = false;
 
         switch (TimeShiftBehaviour)
@@ -119,7 +123,7 @@ public abstract class PickupHandler : MonoBehaviour
 
             case TimeShiftBehaviour.OnlyOne:
 
-                bool sameTimeZone = StartTimeZone == ControllerGame.TimeManager.TimeZone;
+                bool sameTimeZone = StartTimeZone == candidate.GetTimeZone;
                 timeConditionOk = sameTimeZone ^ ControllerGame.TimeManager.IsTimeShiftActive;
                 break;
         }

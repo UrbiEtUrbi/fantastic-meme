@@ -64,7 +64,7 @@ public class TimeShiftView : MonoBehaviour
         }
         else
         {
-            ControllerGame.TimeManager.UnShiftEnemies();
+            
             timer = InverseAnimationCurveHide.Evaluate(1 - timer / TimeToHide)*TimeToShow;
         }
         timerJump = TimeToJump;

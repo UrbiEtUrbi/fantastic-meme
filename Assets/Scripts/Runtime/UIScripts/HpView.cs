@@ -53,7 +53,6 @@ public class HpView : MonoBehaviour
 
     public void UpdateHealth(int current)
     {
-        Debug.Log($"update health");
         for (int i = 0; i < Hearts.Count; i++)
         {
             if (HealthStatus[i] && current <= i)

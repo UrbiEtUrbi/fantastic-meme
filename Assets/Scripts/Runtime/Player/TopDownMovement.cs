@@ -39,7 +39,12 @@ public class TopDownMovement : MonoBehaviour
     [SerializeField]
     TimeShiftView Mask;
 
-    
+    Vector2 KnockForce;
+
+    [SerializeField]
+    float knockForce;
+
+
 
     [HideInInspector]
     public bool Slowing;
@@ -74,6 +79,8 @@ public class TopDownMovement : MonoBehaviour
     {
         if (ControllerGame.Instance.IsGameOver)
         {
+            m_Velocity = default;
+            m_Rb.velocity = default;
             return;
         }
 
@@ -82,7 +89,7 @@ public class TopDownMovement : MonoBehaviour
            
             m_Speed = default;
             m_Velocity = default;
-            
+            m_Rb.velocity = default;
             return;
         }
 
@@ -100,10 +107,13 @@ public class TopDownMovement : MonoBehaviour
 
         var maxSpeed = Mask.isShowing ? MaxSpeedAbility : MaxSpeed;
 
-        m_Velocity = m_Velocity.normalized * Mathf.Min(m_Velocity.magnitude, maxSpeed);
+        m_Velocity = m_Velocity.normalized * Mathf.Min((m_Velocity).magnitude, maxSpeed + KnockForce.magnitude);
+
 
 
         m_Rb.velocity = m_Velocity;
+
+        KnockForce *= 0.9f;
 
         m_Sprite.flipX = m_Velocity.x < 0;
     }
@@ -143,6 +153,13 @@ public class TopDownMovement : MonoBehaviour
         //SoundManager.Instance.Play("spike_shoot");
         //Animator.SetBool("IsCasting", true);
 
+    }
+
+    public void Knock(Vector3 direction)
+    {
+        KnockForce = direction * knockForce;
+        m_Rb.velocity += KnockForce;
+        m_Velocity += KnockForce;
     }
 
     void OnAttack()

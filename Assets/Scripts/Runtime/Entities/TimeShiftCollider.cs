@@ -8,18 +8,16 @@ public class TimeShiftCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (LayerMask.LayerToName(collision.gameObject.layer).Contains("Enemy"))
         {
-
             ControllerGame.TimeManager.AddToTimeshift(collision.gameObject.GetComponent<Creature>());
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (LayerMask.LayerToName(collision.gameObject.layer).Contains("Enemy"))
         {
-
             ControllerGame.TimeManager.RemoveFromTimeshift(collision.gameObject.GetComponent<Creature>());
         }
     }

@@ -12,5 +12,9 @@ public interface IPickupCollector
     {
         get;
     }
+    TimeZone GetTimeZone
+    {
+        get;
+    }
 
 }

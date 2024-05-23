@@ -67,6 +67,7 @@ public class TimeManager : MonoBehaviour
     {
         foreach (var c in CreaturesInTimeShift)
         {
+
             c.SetTime(TimeZone);
             c.UpdateMaskAfterJump();
         }
@@ -79,6 +80,10 @@ public class TimeManager : MonoBehaviour
 
         foreach (var c in CreaturesInTimeShift)
         {
+            if (c.CurrentTimeZone == otherTime)
+            {
+                continue;
+            }
             c.SetTime(otherTime);
             c.UpdateMaskBeforeJump();
         }
@@ -88,7 +93,8 @@ public class TimeManager : MonoBehaviour
     {
         if (!CreaturesInTimeShift.Contains(c) && !IsJumping)
         {
-  //          Debug.Log($"add {c.name} to timeshift");
+            //          Debug.Log($"add {c.name} to timeshift");
+            c.UpdateLayer(IsTimeShiftActive);
             CreaturesInTimeShift.Add(c);
         }
     }
@@ -97,7 +103,8 @@ public class TimeManager : MonoBehaviour
     {
         if (CreaturesInTimeShift.Contains(c) && !IsJumping)
         {
-//            Debug.Log($"remove {c.name} from timeshift");
+            //            Debug.Log($"remove {c.name} from timeshift");
+            c.UpdateLayer();
             CreaturesInTimeShift.Remove(c);
         }
     }

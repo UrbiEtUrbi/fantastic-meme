@@ -31,15 +31,25 @@ public class Rusher : Creature, IPickupCollector
 
     public PickupType GetPickupType => PickupType.Plant;
 
+    public TimeZone GetTimeZone => CurrentTimeZone;
+
     Vector3 starpos;
     [SerializeField]
     float StopDistance;
+
+    
 
     protected override void Awake()
     {
         starpos = transform.position;
         base.Awake();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        
+    }
+
+    protected override void Start()
+    {
+        base.Start();
         if (targetCabbage)
         {
             cabbagePlots = FindObjectsByType<CabbagePlot>(sortMode: FindObjectsSortMode.None).ToList();
@@ -55,12 +65,7 @@ public class Rusher : Creature, IPickupCollector
             
         }
 
-        if (!ControllerGame.TimeManager.IsTimeShiftActive && ControllerGame.TimeManager.TimeZone != CurrentTimeZone)
-        {
-            rb.velocity = default;
-
-            return;
-        }
+       
 
 
         if (RushTime > 0 && m_RushTimer <= 0 && !waiting)
@@ -69,7 +74,7 @@ public class Rusher : Creature, IPickupCollector
             waiting = true;
             m_Velocity = default;
             rb.velocity = default;
-            rb.simulated = false;
+
         }
 
         var dir = (ControllerGame.Player.transform.position - transform.position).normalized;
@@ -113,9 +118,12 @@ public class Rusher : Creature, IPickupCollector
             }
         }
 
-        if (distance > ActivationDistance)
+        if (distance > ActivationDistance || !ControllerGame.TimeManager.IsTimeShiftActive && ControllerGame.TimeManager.TimeZone != CurrentTimeZone)
         {
-            dir = (starpos - transform.position).normalized;
+            if (target == null)
+            {
+                dir = (starpos - transform.position).normalized;
+            }
 
             if (target == null && Vector3.Distance(starpos, transform.position) < StopDistance)
             {
@@ -161,7 +169,8 @@ public class Rusher : Creature, IPickupCollector
 
     public bool CanPickup(PickupType pickupType)
     {
-        return pickupType == GetPickupType;
+
+        return targetCabbage && pickupType == GetPickupType;
     }
 
     public void PickUp(PickupType pickupType)

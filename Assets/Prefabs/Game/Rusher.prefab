@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2900344738190709464}
   - component: {fileID: 3377384375975125766}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8843516175241482239}
   - component: {fileID: 2067418090736680074}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Art (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 1213394430015190844}
   - component: {fileID: 3834701824759130060}
   - component: {fileID: 8946751953216485693}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Rusher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ MonoBehaviour:
   AttackArea: {x: 1, y: 1}
   ImmuneToFreeze: 1
   ImumneToStun: 1
-  Acceleration: 33.333332
+  Acceleration: 33.3
   RushTime: 2
   targetCabbage: 0
   StopDistance: 0.1

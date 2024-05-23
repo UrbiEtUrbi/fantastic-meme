@@ -15,9 +15,9 @@ TagManager:
   - TilemapFront
   - TilemapBack
   - Enemy
-  - 
-  - 
-  - 
+  - EnemyDifferentTZ
+  - Player
+  - TimeShift
   - 
   - 
   - 

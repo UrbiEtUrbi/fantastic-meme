@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4316462176472143548}
   - component: {fileID: 6731364486342518527}
   - component: {fileID: 4016764330434211415}
-  - component: {fileID: 5709544824966294024}
+  - component: {fileID: 8957590278393454275}
   m_Layer: 9
   m_Name: Slug
   m_TagString: Untagged
@@ -94,8 +94,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &5709544824966294024
-BoxCollider2D:
+--- !u!58 &8957590278393454275
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,7 +103,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 416048877357843976}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8484a6037402f4cad9c89ef6d4866ec3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -127,18 +127,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!1 &5722467263740780738
 GameObject:
   m_ObjectHideFlags: 0

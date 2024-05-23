@@ -1190,7 +1190,7 @@ MonoBehaviour:
   IsGameOver: 0
   IsGamePlaying: 0
   HpView: {fileID: 2017948306}
-  PlayerMaxHealthStarting: 1
+  PlayerMaxHealthStarting: 5
   HasStick: 0
   HasSpike: 0
   HasIceMelee: 0

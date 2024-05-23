@@ -108,12 +108,15 @@ public class Creature : Entity, IHealth
 
         var overlap = Physics2D.OverlapBox(transform.position, AttackArea, 0, LayerMask.GetMask("Player"));
 
-        if (overlap)
+        if (overlap && gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             var f = (ControllerGame.Player.transform.position - transform.position).normalized;
 
             ControllerGame.Player.Knock(f);
-            
+            isStunned = true;
+            StunTimer = StunTime;
+
+
             ControllerGame.Player.ChangeHealth(-1);
         }
 
@@ -131,11 +134,11 @@ public class Creature : Entity, IHealth
         SaveCollider();
     }
 
+    Collider2D creatureCollider;
+
     protected virtual void SaveCollider()
     {
-        var collider = GetComponent<BoxCollider2D>();
-        colliderOffset = collider.offset;
-        colliderSize = collider.size;
+        creatureCollider = GetComponent<Collider2D>();
     }
 
 
@@ -163,6 +166,12 @@ public class Creature : Entity, IHealth
     public void UpdateMaskAfterJump()
     {
         art.maskInteraction = ControllerGame.TimeManager.TimeZone == CurrentTimeZone ? SpriteMaskInteraction.None : SpriteMaskInteraction.VisibleInsideMask;
+        UpdateLayer();
+    }
+
+    public void UpdateLayer(bool inTimeshift = false)
+    {
+        gameObject.layer = ControllerGame.TimeManager.TimeZone == CurrentTimeZone || inTimeshift ? LayerMask.NameToLayer("Enemy") : LayerMask.NameToLayer("EnemyDifferentTZ");
     }
 
     public void UpdateMaskBeforeJump()

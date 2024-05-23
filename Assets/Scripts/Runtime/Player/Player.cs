@@ -36,11 +36,9 @@ public class Player : MonoBehaviour, IHealth, IPickupCollector
 
     void Awake() {
         movement = GetComponent<TopDownMovement>();
+       
     }
 
-
-
-  
     public void ChangeHealth(int amount)
     {
         if (amount < 0)
@@ -147,7 +145,7 @@ public class Player : MonoBehaviour, IHealth, IPickupCollector
     {
         if (IFrameTime < 0)
         {
-          //  movement.Knock(direction);
+            movement.Knock(direction);
         }
     }
 
@@ -218,6 +216,8 @@ public class Player : MonoBehaviour, IHealth, IPickupCollector
 
 
     public PickupType GetPickupType => CurrentPickup;
+
+    public TimeZone GetTimeZone => ControllerGame.TimeManager.TimeZone;
 
     public Item Place()
     {
