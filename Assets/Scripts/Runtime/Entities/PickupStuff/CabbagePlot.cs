@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CabbagePlot : PickupDispenser
 {
+
+
+    private void Start()
+    {
+        Spawn();
+    }
     protected override void OnTimerEnd()
     {
         if (View != null)

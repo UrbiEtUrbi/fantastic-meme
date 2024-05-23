@@ -58,7 +58,6 @@ public abstract class PickupHandler : MonoBehaviour
     public virtual void Spawn()
     {
 
-        Debug.Log("spawn");
         IsInteractible = true;
         var item = ControllerGame.ControllerPickups.Pickup(PickupType);
         item.transform.SetParent(transform);

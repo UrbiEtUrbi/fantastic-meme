@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Rusher : Creature
+public class Rusher : Creature, IPickupCollector
 {
 
 
@@ -29,8 +29,14 @@ public class Rusher : Creature
 
     List<CabbagePlot> cabbagePlots;
 
+    public PickupType GetPickupType => PickupType.Plant;
+
+    Vector3 starpos;
+    float StopDistance;
+
     protected override void Awake()
     {
+        starpos = transform.position;
         base.Awake();
         rb = gameObject.GetComponent<Rigidbody2D>();
         if (targetCabbage)
@@ -66,25 +72,33 @@ public class Rusher : Creature
         }
 
         var dir = (ControllerGame.Player.transform.position - transform.position).normalized;
+        var distance = Vector3.Distance(ControllerGame.Player.transform.position, transform.position);
         if (targetCabbage)
         {
             if (CurrentTimeZone == TimeZone.Present)
             {
                 if (target == null)
                 {
-                    cabbagePlots.OrderBy(x => Vector3.Distance(x.transform.position, transform.position));
+                    cabbagePlots = cabbagePlots.OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).ToList();
                     foreach (var c in cabbagePlots)
                     {
+
+                       
                         if (c.View != null)
                         {
                             target = c;
+                            break;
 
                         }
                     }
                 }
                 if (target != null && target.View != null)
                 {
-
+                    distance = float.MinValue;
+                    if (Vector3.Distance(target.transform.position, transform.position) < StopDistance)
+                    {
+                        dir = default;
+                    }
                     dir = (target.transform.position - transform.position).normalized;
                 }
             }
@@ -94,7 +108,17 @@ public class Rusher : Creature
             }
         }
 
-        
+        if (distance > ActivationDistance)
+        {
+            dir = (starpos - transform.position).normalized;
+        }
+
+        if (target != null && distance < StopDistance)
+        {
+            dir = default;
+        }
+
+
 
         if (direction != Mathf.Sign(dir.x))
         {
@@ -126,5 +150,30 @@ public class Rusher : Creature
     {
         base.Update();
         m_RushTimer -= Time.deltaTime;
+    }
+
+    public bool CanPickup(PickupType pickupType)
+    {
+        return pickupType == GetPickupType;
+    }
+
+    public void PickUp(PickupType pickupType)
+    {
+        
+    }
+
+    public Item Place()
+    {
+        return default;
+    }
+
+    protected override void OnDrawGizmosSelected()
+    {
+        if (targetCabbage && target != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, target.transform.position);
+        }
+        base.OnDrawGizmosSelected();
     }
 }
