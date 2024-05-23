@@ -66,6 +66,7 @@ MonoBehaviour:
   Acceleration: 15
   RushTime: 0
   targetCabbage: 1
+  StopDistance: 0.1
 --- !u!50 &4016764330434211415
 Rigidbody2D:
   serializedVersion: 4

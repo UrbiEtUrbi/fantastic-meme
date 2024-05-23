@@ -216,11 +216,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f532caa7bda74bb1b7d6330f4058848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivationDistance: 14
+  ActivationDistance: 8
   DeactivationDistance: 20
   MaxHealth: 1
   CurrentTimeZone: 1
-  Speed: 3
+  Speed: 2.5
   PauseTime: 1
   StunTime: 1
   _Animator: {fileID: 0}
@@ -234,6 +234,7 @@ MonoBehaviour:
   Acceleration: 33.333332
   RushTime: 2
   targetCabbage: 0
+  StopDistance: 0.1
 --- !u!50 &3834701824759130060
 Rigidbody2D:
   serializedVersion: 4

@@ -32,6 +32,7 @@ public class Rusher : Creature, IPickupCollector
     public PickupType GetPickupType => PickupType.Plant;
 
     Vector3 starpos;
+    [SerializeField]
     float StopDistance;
 
     protected override void Awake()
@@ -111,13 +112,14 @@ public class Rusher : Creature, IPickupCollector
         if (distance > ActivationDistance)
         {
             dir = (starpos - transform.position).normalized;
+
+            if (target == null && Vector3.Distance(starpos, transform.position) < StopDistance)
+            {
+                dir = default;
+            }
         }
 
-        if (target != null && distance < StopDistance)
-        {
-            dir = default;
-        }
-
+      
 
 
         if (direction != Mathf.Sign(dir.x))
