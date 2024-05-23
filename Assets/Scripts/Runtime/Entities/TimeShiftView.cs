@@ -58,6 +58,9 @@ public class TimeShiftView : MonoBehaviour
         }
         isShowing = true;
         ControllerGame.TimeManager.IsTimeShiftActive = true;
+
+
+        SoundManager.Instance.Play("timeshift", ControllerGame.Player.transform);
         if (timer <= 0)
         {
             timer = TimeToShow;

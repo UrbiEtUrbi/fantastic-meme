@@ -51,11 +51,11 @@ MonoBehaviour:
     CrossfadeTime: 0
     Randomize: 0
     MusicTracks:
-    - overworld
+    - main_theme
   Tracks:
-  - Name: overworld
-    Volume: 0.49
+  - Name: main_theme
+    Volume: 0.5
     Layers:
-    - Volume: 1
-      m_AudioClip: {fileID: 8300000, guid: 8fca26ff5c9c74734a338c10e1b923c1, type: 3}
+    - Volume: 0.5
+      m_AudioClip: {fileID: 8300000, guid: 1517f5b0c5915408a8eabaeda53421e0, type: 3}
   DeltaTime: 0.05

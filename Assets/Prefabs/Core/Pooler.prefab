@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects:
   - poolObject: {fileID: 3382101926545384584, guid: 419a19735a3a248e3bcf551a3b82926c, type: 3}
-    initialPoolSize: 1
+    initialPoolSize: 0
     maxPoolSize: 2
   - poolObject: {fileID: 4568430017190543386, guid: 8f6c698300d894260ba4a58fe30b4cb6, type: 3}
     initialPoolSize: 0

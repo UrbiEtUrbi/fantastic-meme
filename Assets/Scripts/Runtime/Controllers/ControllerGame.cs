@@ -199,8 +199,10 @@ public class ControllerGame : ControllerLocal
         player.ChangeHealth(PlayerMaxHealthStarting+currentMaxHealth);
         Rooms.InitialRoom(initRoom,initEntrance);
         VCamera.Follow = player.transform;
-        //MusicPlayer.Instance.PlayPlaylist("main");
 
+
+
+        MusicPlayer.Instance.PlayPlaylist("main");
 
     }
 

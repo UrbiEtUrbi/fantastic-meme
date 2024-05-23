@@ -71,7 +71,7 @@ public class TopDownMovement : MonoBehaviour
         ControllerInput.Instance.Cast.RemoveListener(OnCast);
     }
 
-
+    bool playingRun;
 
 
 
@@ -116,6 +116,24 @@ public class TopDownMovement : MonoBehaviour
         KnockForce *= 0.9f;
 
         m_Sprite.flipX = m_Velocity.x < 0;
+
+        if (!playingRun)
+        {
+            if (m_Rb.velocity.magnitude > 0.1f)
+            {
+                playingRun = true;
+                SoundManager.Instance.PlayLooped("duck_run", source: gameObject, transform);
+            }
+        }
+        if (playingRun)
+        {
+            if (m_Rb.velocity.magnitude <= 0.1f)
+            {
+                playingRun = false;
+                SoundManager.Instance.CancelLoop(gameObject);
+            }
+            
+        }
     }
 
         public void Revive()
