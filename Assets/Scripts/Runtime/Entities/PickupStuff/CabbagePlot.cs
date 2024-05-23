@@ -8,7 +8,11 @@ public class CabbagePlot : PickupDispenser
     {
         if (View != null)
         {
-            Destroy(View.gameObject);
+            if (View != null)
+            {
+                spriteRenderers.Remove(View.GetComponent<SpriteRenderer>());
+                Destroy(View.gameObject);
+            }
         }
 
     }

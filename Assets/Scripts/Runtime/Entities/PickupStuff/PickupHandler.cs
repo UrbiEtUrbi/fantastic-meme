@@ -153,6 +153,7 @@ public abstract class PickupHandler : MonoBehaviour
         OnInteracted.Invoke();
         if (View != null)
         {
+            spriteRenderers.Remove(View.GetComponent<SpriteRenderer>());
             Destroy(View.gameObject);
         }
     }
