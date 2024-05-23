@@ -67,10 +67,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f86831829467460eb4fc23dc4836eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 5
-  MaxSpeedAbility: 2
+  MaxSpeed: 4
+  MaxSpeedAbility: 1
   Acceleration: 1
-  Drag: 0.9
+  Drag: 0.8
   lockOrientation: 0
   Mask: {fileID: 6772042948578239562}
   Slowing: 0
@@ -483,7 +483,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  Size: 3.5
+  Size: 5
   rotationSpeed: 50
   TimeToShow: 0.5
   TimeToHide: 0.5
@@ -519,7 +519,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
   m_LocalPosition: {x: 0, y: -0.3, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 4.9, y: 4.9, z: 4.9}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2074831927200041314}
