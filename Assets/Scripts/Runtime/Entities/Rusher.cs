@@ -99,8 +99,12 @@ public class Rusher : Creature, IPickupCollector
                     if (Vector3.Distance(target.transform.position, transform.position) < StopDistance)
                     {
                         dir = default;
+                        m_Velocity = default;
                     }
-                    dir = (target.transform.position - transform.position).normalized;
+                    else
+                    {
+                        dir = (target.transform.position - transform.position).normalized;
+                    }
                 }
             }
             else
@@ -116,6 +120,7 @@ public class Rusher : Creature, IPickupCollector
             if (target == null && Vector3.Distance(starpos, transform.position) < StopDistance)
             {
                 dir = default;
+                m_Velocity = default;
             }
         }
 
@@ -161,7 +166,7 @@ public class Rusher : Creature, IPickupCollector
 
     public void PickUp(PickupType pickupType)
     {
-        
+        target = null;
     }
 
     public Item Place()

@@ -14,6 +14,7 @@ public class CabbagePlot : PickupDispenser
     {
         if (View != null)
         {
+            CurrentlyAttending.PickUp(PickupType);
             if (View != null)
             {
                 spriteRenderers.Remove(View.GetComponent<SpriteRenderer>());
