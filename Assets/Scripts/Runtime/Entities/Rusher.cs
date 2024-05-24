@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Pathfinding;
 using UnityEngine;
 
 public class Rusher : Creature, IPickupCollector
@@ -24,7 +25,8 @@ public class Rusher : Creature, IPickupCollector
 
     public bool targetCabbage;
 
-    CabbagePlot target;
+    Transform target;
+    CabbagePlot targetCabbagePlot;
 
 
     List<CabbagePlot> cabbagePlots;
@@ -37,7 +39,16 @@ public class Rusher : Creature, IPickupCollector
     [SerializeField]
     float StopDistance;
 
-    
+
+    bool pathSet;
+
+
+    [SerializeField]
+    Seeker seeker;
+
+    [SerializeField]
+    float UpdatePathTime;
+    float UpdatePathTimer;
 
     protected override void Awake()
     {
@@ -77,68 +88,39 @@ public class Rusher : Creature, IPickupCollector
 
         }
 
-        var dir = (ControllerGame.Player.transform.position - transform.position).normalized;
-        var distance = Vector3.Distance(ControllerGame.Player.transform.position, transform.position);
-        if (targetCabbage)
+        bool canTargetCabbage = targetCabbage && CurrentTimeZone == TimeZone.Present;
+        bool isChasingCabbage = targetCabbage && cabbagePlots.Any(x => x.transform == target);
+        bool canTargetPlayer = !canTargetCabbage && Vector3.Distance(ControllerGame.Player.transform.position, transform.position) < ActivationDistance &&
+            (ControllerGame.TimeManager.IsTimeShiftActive || ControllerGame.TimeManager.TimeZone == CurrentTimeZone);
+
+        if (canTargetCabbage && !isChasingCabbage)
         {
-            if (CurrentTimeZone == TimeZone.Present)
-            {
-                if (target == null)
-                {
-                    cabbagePlots = cabbagePlots.OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).ToList();
-                    foreach (var c in cabbagePlots)
-                    {
 
-                       
-                        if (c.View != null)
-                        {
-                            target = c;
-                            break;
-
-                        }
-                    }
-                }
-                if (target != null && target.View != null)
-                {
-                    distance = float.MinValue;
-                    if (Vector3.Distance(target.transform.position, transform.position) < StopDistance)
-                    {
-                        dir = default;
-                        m_Velocity = default;
-                    }
-                    else
-                    {
-                        dir = (target.transform.position - transform.position).normalized;
-                    }
-                }
-            }
-            else
+            cabbagePlots = cabbagePlots.OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).ToList();
+            foreach (var c in cabbagePlots)
             {
-                target = null;
+                if (c.View != null)
+                {
+                    pathSet = false;
+                    target = c.transform;
+                    targetCabbage = c;
+                    break;
+                }
             }
         }
 
-        if (distance > ActivationDistance || !ControllerGame.TimeManager.IsTimeShiftActive && ControllerGame.TimeManager.TimeZone != CurrentTimeZone)
+        if (canTargetPlayer && target == null)
         {
-            if (target == null)
-            {
-                dir = (starpos - transform.position).normalized;
-            }
-
-            if (target == null && Vector3.Distance(starpos, transform.position) < StopDistance)
-            {
-                dir = default;
-                m_Velocity = default;
-            }
+            pathSet = false;
+            target = ControllerGame.Player.transform;
+        }
+        if (!isChasingCabbage && !canTargetPlayer && target != null)
+        {
+            pathSet = false;
+            target = null;
         }
 
       
-
-
-        if (direction != Mathf.Sign(dir.x))
-        {
-            turningAround = true;
-        }
 
         if (PauseTimer >= 0)
         {
@@ -152,19 +134,97 @@ public class Rusher : Creature, IPickupCollector
             rb.simulated = true;
             m_RushTimer = RushTime;
         }
+        
+        CheckPath();
+        MovePath();
+    }
 
-      
-        var dir2 = new Vector2(dir.x, dir.y);
-        m_Velocity += dir2 * Acceleration * Time.fixedDeltaTime;
-        m_Velocity = m_Velocity.normalized * Mathf.Min(m_Velocity.magnitude, Speed);
+    Path _path;
+    int _currentPathpoint;
+    bool _reachedEndOfPath = false;
 
-        rb.velocity = m_Velocity;
+    void CheckPath()
+    {
+        if (UpdatePathTimer <= 0 || !pathSet && seeker.IsDone())
+        {
+            if (target)
+            {
+                seeker.StartPath(transform.position, target.position, OnPathComplete);
+            }
+            else
+            {
+                seeker.StartPath(transform.position, starpos, OnPathComplete);
+            }
+            UpdatePathTimer = UpdatePathTime;
+            pathSet = true;
+
+        }
+    }
+
+    Vector3 normalizedDir;
+
+    void MovePath()
+    {
+        if (_path == null)
+        {
+            return;
+        }
+
+        _reachedEndOfPath = _currentPathpoint >= _path.vectorPath.Count;
+
+        // handle this that after one attack of the player there is a timeout where the harpy loses aggro
+        try
+        {
+            if (_reachedEndOfPath)
+            {
+                rb.velocity = default;
+                m_Velocity = default;
+                return;
+            }
+            Vector2 dir = ((Vector2)_path.vectorPath[_currentPathpoint] - rb.position).normalized;
+            m_Velocity += dir * Acceleration * Time.fixedDeltaTime;
+            m_Velocity = m_Velocity.normalized * Mathf.Min(m_Velocity.magnitude, Speed);
+            normalizedDir = dir;
+
+
+            var dirToTarget = (target != null ? (target.position - transform.position) : starpos - transform.position);
+            if (direction != Mathf.Sign(dirToTarget.x))
+            {
+                turningAround = true;
+            }
+
+            rb.velocity = m_Velocity;
+        }
+        catch
+        {
+            pathSet = false;
+            return;
+        }
+
+
+
+
+        float distance = Vector2.Distance(rb.position, _path.vectorPath[_currentPathpoint]);
+        if (distance < StopDistance)
+        {
+            _currentPathpoint++;
+        }
+    }
+
+
+    private void OnPathComplete(Path p)
+    {
+        if (p.error) return;
+
+        _path = p;
+        _currentPathpoint = 0;
     }
 
     protected override void Update()
     {
         base.Update();
         m_RushTimer -= Time.deltaTime;
+        UpdatePathTimer -= Time.deltaTime;
     }
 
     public bool CanPickup(PickupType pickupType)
@@ -190,6 +250,13 @@ public class Rusher : Creature, IPickupCollector
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, target.transform.position);
         }
+
+       
         base.OnDrawGizmosSelected();
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + normalizedDir);
+        
     }
 }

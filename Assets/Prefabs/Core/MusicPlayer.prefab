@@ -52,10 +52,21 @@ MonoBehaviour:
     Randomize: 0
     MusicTracks:
     - main_theme
+  - Name: past
+    Crossfade: 0
+    CrossfadeTime: 0
+    Randomize: 0
+    MusicTracks:
+    - past_theme
   Tracks:
   - Name: main_theme
     Volume: 0.5
     Layers:
     - Volume: 0.5
       m_AudioClip: {fileID: 8300000, guid: 1517f5b0c5915408a8eabaeda53421e0, type: 3}
+  - Name: past_theme
+    Volume: 0.5
+    Layers:
+    - Volume: 0.5
+      m_AudioClip: {fileID: 8300000, guid: 4fbcc7e15671544e19c6885dc06866f1, type: 3}
   DeltaTime: 0.05

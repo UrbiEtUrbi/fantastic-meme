@@ -24,8 +24,10 @@ public class TimeManager : MonoBehaviour
     {
         if (TimeZone == TimeZone.Present) {
             TimeZone = TimeZone.Past;
+            MusicPlayer.Instance.PlayPlaylist("past", fadeIn: 0.5f);
         } else {
             TimeZone = TimeZone.Present;
+            MusicPlayer.Instance.PlayPlaylist("main", fadeIn: 0.5f);
         }
         OnSetGlobalTime.Invoke(TimeZone);
 
@@ -44,6 +46,8 @@ public class TimeManager : MonoBehaviour
         CreaturesInTimeShift.Clear();
         OnSetGlobalTime.Invoke(TimeZone);
         IsJumping = false;
+
+       
     }
 
     public void BeforeJump()

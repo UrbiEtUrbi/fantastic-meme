@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6731364486342518527}
   - component: {fileID: 4016764330434211415}
   - component: {fileID: 8957590278393454275}
+  - component: {fileID: -1542787508581694977}
   m_Layer: 9
   m_Name: Slug
   m_TagString: Untagged
@@ -67,6 +68,8 @@ MonoBehaviour:
   RushTime: 0
   targetCabbage: 1
   StopDistance: 0.2
+  seeker: {fileID: -1542787508581694977}
+  UpdatePathTime: 0.2
 --- !u!50 &4016764330434211415
 Rigidbody2D:
   serializedVersion: 4
@@ -129,6 +132,34 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-1542787508581694977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416048877357843976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &5722467263740780738
 GameObject:
   m_ObjectHideFlags: 0

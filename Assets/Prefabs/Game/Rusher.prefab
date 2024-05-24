@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 1213394430015190844}
   - component: {fileID: 3834701824759130060}
   - component: {fileID: 8946751953216485693}
+  - component: {fileID: 8105901736253053725}
   m_Layer: 10
   m_Name: Rusher
   m_TagString: Untagged
@@ -220,7 +221,7 @@ MonoBehaviour:
   DeactivationDistance: 20
   MaxHealth: 1
   CurrentTimeZone: 1
-  Speed: 2.5
+  Speed: 4
   PauseTime: 1
   StunTime: 1
   _Animator: {fileID: 0}
@@ -235,6 +236,8 @@ MonoBehaviour:
   RushTime: 2
   targetCabbage: 0
   StopDistance: 0.1
+  seeker: {fileID: 8105901736253053725}
+  UpdatePathTime: 0.1
 --- !u!50 &3834701824759130060
 Rigidbody2D:
   serializedVersion: 4
@@ -307,3 +310,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8105901736253053725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753079740626183761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
