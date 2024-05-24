@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using Toolbox.Serialization;
+using TMPro;
 
 public class ControllerGame : ControllerLocal
 {
@@ -72,7 +72,9 @@ public class ControllerGame : ControllerLocal
 
     #endregion
 
-
+    [SerializeField]
+    TMP_Text CabbageLabel;
+    
     [SerializeField]
     HpView HpView;
 
@@ -170,6 +172,7 @@ public class ControllerGame : ControllerLocal
         
 
         base.Init();
+        CabbageLabel.SetText($"0x");
         StartCoroutine(WaitForSceneLoad());
     }
 
@@ -190,6 +193,12 @@ public class ControllerGame : ControllerLocal
 
         }
         Confiner.InvalidateCache();
+    }
+    int cabbageCount;
+    public void CollectCabbage()
+    {
+        cabbageCount++;
+        CabbageLabel.SetText($"{cabbageCount}x");
     }
 
     IEnumerator WaitForSceneLoad() {

@@ -117,6 +117,7 @@ public class Creature : Entity, IHealth
             StunTimer = StunTime;
 
 
+            SoundManager.Instance.Play("duck_hit", ControllerGame.Player.transform);
             ControllerGame.Player.ChangeHealth(-1);
         }
 
@@ -171,13 +172,16 @@ public class Creature : Entity, IHealth
 
     public void UpdateLayer(bool inTimeshift = false)
     {
+      
         gameObject.layer = ControllerGame.TimeManager.TimeZone == CurrentTimeZone || inTimeshift ? LayerMask.NameToLayer("Enemy") : LayerMask.NameToLayer("EnemyDifferentTZ");
+        Debug.Log($"set {name} layer to {LayerMask.LayerToName(gameObject.layer)}");
     }
 
-    public void UpdateMaskBeforeJump()
+    public void UpdateMaskBeforeJump(bool inTimeShift = false)
     {
 
         art.maskInteraction = ControllerGame.TimeManager.TimeZone == CurrentTimeZone ? SpriteMaskInteraction.VisibleOutsideMask : SpriteMaskInteraction.VisibleInsideMask;
+        UpdateLayer(inTimeShift);
     }
 
     public virtual void Die()

@@ -22,6 +22,8 @@ public class TimeManager : MonoBehaviour
 
     public void Flip()
     {
+
+
         if (TimeZone == TimeZone.Present) {
             TimeZone = TimeZone.Past;
             MusicPlayer.Instance.PlayPlaylist("past", fadeIn: 0.5f);
@@ -52,6 +54,7 @@ public class TimeManager : MonoBehaviour
 
     public void BeforeJump()
     {
+        SoundManager.Instance.Play("jump", ControllerGame.Player.transform);
         IsJumping = true;
         var allEntities = ControllerGame.ControllerEntities.GetEntities;
 
@@ -71,9 +74,7 @@ public class TimeManager : MonoBehaviour
     {
         foreach (var c in CreaturesInTimeShift)
         {
-
-            c.SetTime(TimeZone);
-            c.UpdateMaskAfterJump();
+            c.UpdateLayer(IsTimeShiftActive);
         }
     }
 
@@ -89,7 +90,7 @@ public class TimeManager : MonoBehaviour
                 continue;
             }
             c.SetTime(otherTime);
-            c.UpdateMaskBeforeJump();
+            c.UpdateMaskBeforeJump(true);
         }
     }
 
@@ -97,7 +98,6 @@ public class TimeManager : MonoBehaviour
     {
         if (!CreaturesInTimeShift.Contains(c) && !IsJumping)
         {
-            //          Debug.Log($"add {c.name} to timeshift");
             c.UpdateLayer(IsTimeShiftActive);
             CreaturesInTimeShift.Add(c);
         }

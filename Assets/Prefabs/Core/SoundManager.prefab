@@ -49,7 +49,7 @@ MonoBehaviour:
   - SoundName: timeshift
     PlaySubitemType: 1
     soundItems:
-    - AudioClip: {fileID: 8300000, guid: e46a20b032bb8482b8c5aef07bc060f0, type: 3}
+    - AudioClip: {fileID: 8300000, guid: 46aa3ff8d674a47ddb8c59aed3560f04, type: 3}
     Volume: 0
     PitchShift: 0
     RandomPitch: 0
@@ -67,6 +67,70 @@ MonoBehaviour:
     soundItems:
     - AudioClip: {fileID: 8300000, guid: 88bca933bf0034d44acc11eb34a0453c, type: 3}
     Volume: -0.3
+    PitchShift: 0
+    RandomPitch: 0
+    DopplerLevel: 0
+    MinimumTimeBetweenSameSound: 0.1
+    notSameTwiceOffset: 0
+    ChanceToPlay: 100
+    MinDistance: 0
+    MaxDistance: 0
+    UseCustomMinMax: 0
+    OverrideCustomSpatialBlend: 0
+    UseCustomSpatialBlend: 0
+  - SoundName: duck_death
+    PlaySubitemType: 1
+    soundItems:
+    - AudioClip: {fileID: 8300000, guid: fba966f1877754a50a3a3966b54f2791, type: 3}
+    Volume: 0
+    PitchShift: 0
+    RandomPitch: 0
+    DopplerLevel: 0
+    MinimumTimeBetweenSameSound: 0.1
+    notSameTwiceOffset: 0
+    ChanceToPlay: 100
+    MinDistance: 0
+    MaxDistance: 0
+    UseCustomMinMax: 0
+    OverrideCustomSpatialBlend: 0
+    UseCustomSpatialBlend: 0
+  - SoundName: duck_hit
+    PlaySubitemType: 1
+    soundItems:
+    - AudioClip: {fileID: 8300000, guid: d6946aaf6a12b485b8540c72475b155f, type: 3}
+    Volume: 0
+    PitchShift: 0
+    RandomPitch: 0
+    DopplerLevel: 0
+    MinimumTimeBetweenSameSound: 0.1
+    notSameTwiceOffset: 0
+    ChanceToPlay: 100
+    MinDistance: 0
+    MaxDistance: 0
+    UseCustomMinMax: 0
+    OverrideCustomSpatialBlend: 0
+    UseCustomSpatialBlend: 0
+  - SoundName: timepower_deactivate
+    PlaySubitemType: 1
+    soundItems:
+    - AudioClip: {fileID: 8300000, guid: bd45658d738de4c14a7793b2ad1bfc02, type: 3}
+    Volume: 0
+    PitchShift: 0
+    RandomPitch: 0
+    DopplerLevel: 0
+    MinimumTimeBetweenSameSound: 1
+    notSameTwiceOffset: 0
+    ChanceToPlay: 100
+    MinDistance: 0
+    MaxDistance: 0
+    UseCustomMinMax: 0
+    OverrideCustomSpatialBlend: 0
+    UseCustomSpatialBlend: 0
+  - SoundName: jump
+    PlaySubitemType: 1
+    soundItems:
+    - AudioClip: {fileID: 8300000, guid: 01498e05fcbbc4f17b46355ec0d7d4a7, type: 3}
+    Volume: 0
     PitchShift: 0
     RandomPitch: 0
     DopplerLevel: 0

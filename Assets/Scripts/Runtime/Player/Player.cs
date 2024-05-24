@@ -75,6 +75,7 @@ public class Player : MonoBehaviour, IHealth, IPickupCollector
 
     public void Die()
     {
+        SoundManager.Instance.Play("duck_die", ControllerGame.Player.transform);
         ControllerGame.Instance.GameOver();
        // movement.Die();
     }
@@ -204,6 +205,11 @@ public class Player : MonoBehaviour, IHealth, IPickupCollector
     public bool CanPickup(PickupType pickupType)
     {
         return CurrentPickup == PickupType.None;
+    }
+
+    public bool CanPlace(PickupType pickupType)
+    {
+        return CurrentPickup == pickupType;
     }
 
     public void PickUp(PickupType pickupType)

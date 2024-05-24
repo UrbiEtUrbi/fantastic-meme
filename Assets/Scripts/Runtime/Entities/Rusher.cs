@@ -90,7 +90,7 @@ public class Rusher : Creature, IPickupCollector
 
         bool canTargetCabbage = targetCabbage && CurrentTimeZone == TimeZone.Present;
         bool isChasingCabbage = targetCabbage && cabbagePlots.Any(x => x.transform == target);
-        bool canTargetPlayer = !canTargetCabbage && Vector3.Distance(ControllerGame.Player.transform.position, transform.position) < ActivationDistance &&
+        bool canTargetPlayer =  Vector3.Distance(ControllerGame.Player.transform.position, transform.position) < ActivationDistance &&
             (ControllerGame.TimeManager.IsTimeShiftActive || ControllerGame.TimeManager.TimeZone == CurrentTimeZone);
 
         if (canTargetCabbage && !isChasingCabbage)
@@ -109,7 +109,7 @@ public class Rusher : Creature, IPickupCollector
             }
         }
 
-        if (canTargetPlayer && target == null)
+        if (canTargetPlayer && !isChasingCabbage && target == null)
         {
             pathSet = false;
             target = ControllerGame.Player.transform;
@@ -229,8 +229,14 @@ public class Rusher : Creature, IPickupCollector
 
     public bool CanPickup(PickupType pickupType)
     {
+        
+        return targetCabbage && pickupType == GetPickupType && CurrentTimeZone == TimeZone.Present;
+    }
 
-        return targetCabbage && pickupType == GetPickupType;
+    public bool CanPlace(PickupType pickupType)
+    {
+
+        return false;
     }
 
     public void PickUp(PickupType pickupType)

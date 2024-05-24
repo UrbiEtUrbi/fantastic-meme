@@ -61,7 +61,7 @@ public abstract class PickupHandler : MonoBehaviour
         IsInteractible = true;
         var item = ControllerGame.ControllerPickups.Pickup(PickupType);
         item.transform.SetParent(transform);
-        item.transform.localPosition = default;
+        item.transform.localPosition = new Vector3(0,1,0);
         spriteRenderers.Add(item.GetComponentInChildren<SpriteRenderer>());
         View = item.gameObject;
         SetGlobalTime(ControllerGame.TimeManager.TimeZone);
@@ -86,7 +86,7 @@ public abstract class PickupHandler : MonoBehaviour
     {
         if (CurrentlyAttending == null)
         {
-            return;
+           
         }
         var pickerExited = collision.gameObject.GetComponent<IPickupCollector>();
         if (pickerExited == CurrentlyAttending)
@@ -99,7 +99,16 @@ public abstract class PickupHandler : MonoBehaviour
     {
         if (CurrentlyAttending != null)
         {
-            return;
+
+            if (CanInteract(CurrentlyAttending))
+            {
+                return;
+            }
+            else
+            {
+                StopPickingUp();
+                return;
+            }
         }
         CheckAndStartPickup(collision);
     }

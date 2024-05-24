@@ -28,7 +28,7 @@ public class PickupSink : PickupHandler
 
     protected override bool CanInteract(IPickupCollector pickupCollector)
     {
-        return pickupCollector.GetPickupType == PickupType;
+        return pickupCollector.CanPlace(PickupType);
     }
 
 

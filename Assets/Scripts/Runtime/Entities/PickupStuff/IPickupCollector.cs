@@ -6,6 +6,7 @@ public interface IPickupCollector
 {
 
     bool CanPickup(PickupType pickupType);
+    bool CanPlace(PickupType pickupType);
     void PickUp(PickupType pickupType);
     Item Place();
     PickupType GetPickupType

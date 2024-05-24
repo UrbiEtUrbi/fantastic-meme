@@ -60,6 +60,7 @@ public class TimeShiftView : MonoBehaviour
         ControllerGame.TimeManager.IsTimeShiftActive = true;
 
 
+        ControllerGame.TimeManager.UnShiftEnemies();
         SoundManager.Instance.Play("timeshift", ControllerGame.Player.transform);
         if (timer <= 0)
         {
@@ -81,15 +82,23 @@ public class TimeShiftView : MonoBehaviour
         {
             return;
         }
-        if (timer <= 0)
+        SoundManager.Instance.Play("timepower_deactivate", ControllerGame.Player.transform);
+        if (timer <= TimeToShow / 2f)
         {
             ControllerGame.TimeManager.ShiftEnemies();
+        }
+        if (timer <= 0)
+        {
+           
             timer = TimeToHide;
         }
         else
         {
             timer = InverseAnimationCurveShow.Evaluate(1 - timer / TimeToShow) * TimeToHide;
         }
+
+      
+      
         isShowing = false;
         isAnimating = true;
     }
