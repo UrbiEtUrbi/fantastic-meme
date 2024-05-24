@@ -221,7 +221,7 @@ MonoBehaviour:
   DeactivationDistance: 20
   MaxHealth: 1
   CurrentTimeZone: 1
-  Speed: 4
+  Speed: 2.5
   PauseTime: 1
   StunTime: 1
   _Animator: {fileID: 0}
