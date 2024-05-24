@@ -34,7 +34,7 @@ public class Creature : Entity, IHealth
     protected Animator _Animator;
 
     [SerializeField]
-    SpriteRenderer art;
+    protected SpriteRenderer art;
 
     
 
@@ -57,7 +57,8 @@ public class Creature : Entity, IHealth
 
     protected virtual bool Enabled => enabledCreature;
 
-    protected bool enabledCreature => PauseTimer < 0 && StunTimer < 0 && !isFrozen;
+    protected bool enabledCreature => PauseTimer < 0 && StunTimer < 0 && !isFrozen && isEnabled;
+    protected bool isEnabled;
 
     protected int GroundMask;
 

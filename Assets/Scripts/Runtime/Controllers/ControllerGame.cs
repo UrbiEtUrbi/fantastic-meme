@@ -194,7 +194,7 @@ public class ControllerGame : ControllerLocal
         }
         Confiner.InvalidateCache();
     }
-    int cabbageCount;
+    public int cabbageCount;
     public void CollectCabbage()
     {
         cabbageCount++;

@@ -40,6 +40,15 @@ public class Rusher : Creature, IPickupCollector
     float StopDistance;
 
 
+    [SerializeField]
+    float TimeToActvivation;
+
+    [SerializeField]
+    int CabbagesToActivation;
+
+    float activationTimer;
+
+
     bool pathSet;
 
 
@@ -49,6 +58,7 @@ public class Rusher : Creature, IPickupCollector
     [SerializeField]
     float UpdatePathTime;
     float UpdatePathTimer;
+
 
     protected override void Awake()
     {
@@ -65,7 +75,36 @@ public class Rusher : Creature, IPickupCollector
         {
             cabbagePlots = FindObjectsByType<CabbagePlot>(sortMode: FindObjectsSortMode.None).ToList();
         }
+
+        if (activationTimer > 0 || CabbagesToActivation > 0)
+        {
+
+            art.enabled = false;
+            isEnabled = false;
+            StartCoroutine(WaitForActivation());
+        }
+        
     }
+
+    IEnumerator WaitForActivation()
+    {
+        while (true)
+        {
+
+            yield return new WaitForSeconds(1);
+            activationTimer += 1;
+
+            if (activationTimer >= TimeToActvivation && ControllerGame.Instance.cabbageCount >= CabbagesToActivation)
+            {
+                art.enabled = true;
+                isEnabled = true;
+                break;
+            }
+           
+        }
+
+    }
+
 
     protected override void FixedUpdate()
     {
