@@ -32,7 +32,7 @@ public class ActivationView : MonoBehaviour
 
     private void Update()
     {
-        if (Handler.CanInteract(ControllerGame.Player) && Vector3.Distance(ControllerGame.Player.transform.position, transform.position) < ActivationDistance)
+        if (Handler.IsInteractible && Handler.CanInteract(ControllerGame.Player) && Vector3.Distance(ControllerGame.Player.transform.position, transform.position) < ActivationDistance)
         {
             Show();
         }
