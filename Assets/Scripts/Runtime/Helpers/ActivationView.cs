@@ -20,15 +20,19 @@ public class ActivationView : MonoBehaviour
     [SerializeField]
     AnimationCurve AnimationCurve;
 
+    public PickupHandler Handler;
+
     private void Awake()
     {
         startScale = transform.localScale;
         transform.localScale = default;
     }
 
+    
+
     private void Update()
     {
-        if (Vector3.Distance(ControllerGame.Player.transform.position, transform.position) < ActivationDistance)
+        if (Handler.CanInteract(ControllerGame.Player) && Vector3.Distance(ControllerGame.Player.transform.position, transform.position) < ActivationDistance)
         {
             Show();
         }

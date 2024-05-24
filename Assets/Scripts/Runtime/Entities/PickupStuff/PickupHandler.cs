@@ -53,6 +53,7 @@ public abstract class PickupHandler : MonoBehaviour
     private void Awake()
     {
         Bar.gameObject.SetActive(false);
+        GetComponentInChildren<ActivationView>().Handler = this;
     }
 
     public virtual void Spawn()
@@ -154,7 +155,7 @@ public abstract class PickupHandler : MonoBehaviour
     }
 
   
-    protected virtual bool CanInteract(IPickupCollector pickupCollector)
+    public virtual bool CanInteract(IPickupCollector pickupCollector)
     {
 
         return false;
@@ -197,6 +198,7 @@ public abstract class PickupHandler : MonoBehaviour
     {
         isPickingUp = false;
         CurrentlyAttending = null;
+        Bar.fillAmount = 0;
     }
 
     private void Update()
