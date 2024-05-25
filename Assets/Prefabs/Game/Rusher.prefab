@@ -221,7 +221,7 @@ MonoBehaviour:
   DeactivationDistance: 20
   MaxHealth: 1
   CurrentTimeZone: 1
-  Speed: 2.5
+  Speed: 3
   PauseTime: 1
   StunTime: 1
   _Animator: {fileID: 0}
@@ -236,6 +236,8 @@ MonoBehaviour:
   RushTime: 2
   targetCabbage: 0
   StopDistance: 0.1
+  TimeToActvivation: 0
+  CabbagesToActivation: 0
   seeker: {fileID: 8105901736253053725}
   UpdatePathTime: 0.1
 --- !u!50 &3834701824759130060
