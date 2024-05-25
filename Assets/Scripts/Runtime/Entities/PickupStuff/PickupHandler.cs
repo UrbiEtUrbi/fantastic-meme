@@ -197,6 +197,7 @@ public abstract class PickupHandler : MonoBehaviour
 
     void StopPickingUp()
     {
+        Debug.Log("stop pickup");
         isPickingUp = false;
         CurrentlyAttending = null;
         Bar.fillAmount = 0;
@@ -208,7 +209,7 @@ public abstract class PickupHandler : MonoBehaviour
         {
             timer -= Time.deltaTime;
 
-            if (!((StartTimeZone == ControllerGame.TimeManager.TimeZone) ^ ControllerGame.TimeManager.IsTimeShiftActive))
+            if (CurrentlyAttending == (IPickupCollector)ControllerGame.Player && !((StartTimeZone == ControllerGame.TimeManager.TimeZone) ^ ControllerGame.TimeManager.IsTimeShiftActive))
             {
                 isPickingUp = false;
                 CurrentlyAttending = null;
