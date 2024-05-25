@@ -75,7 +75,7 @@ public class Player : MonoBehaviour, IHealth, IPickupCollector
 
     public void Die()
     {
-        SoundManager.Instance.Play("duck_die", ControllerGame.Player.transform);
+       // SoundManager.Instance.Play("duck_death", ControllerGame.Player.transform);
         ControllerGame.Instance.GameOver();
        // movement.Die();
     }

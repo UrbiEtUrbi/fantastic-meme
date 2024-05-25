@@ -105,6 +105,14 @@ public class TimeManager : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        CreaturesInTimeShift.Clear();
+        IsJumping = false;
+        IsTimeShiftActive = false;
+        TimeZone = TimeZone.Present;
+    }
+
     public void RemoveFromTimeshift(Creature c)
     {
         if (CreaturesInTimeShift.Contains(c) && !IsJumping)

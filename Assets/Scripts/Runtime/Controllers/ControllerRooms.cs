@@ -143,6 +143,8 @@ public class ControllerRooms : MonoBehaviour
         ControllerGame.Player.Revive();
         yield return new WaitForSeconds(1);
         GameOverText.anchoredPosition = GameOverTextStartPosition;
+
+        ControllerGame.TimeManager.Reset();
         yield return LoadRoom(m_CurrentRoom.Id, m_CurrentEntrance.Id);
         ControllerGame.Instance.Continue();
 

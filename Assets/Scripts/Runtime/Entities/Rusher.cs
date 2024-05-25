@@ -329,6 +329,7 @@ public class Rusher : Creature, IPickupCollector
 
     public void PickUp(PickupType pickupType)
     {
+        ControllerGame.Instance.SlugEatCabbage();
         target = null;
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using TMPro;
+using System.Linq;
 
 public class ControllerGame : ControllerLocal
 {
@@ -199,10 +200,12 @@ public class ControllerGame : ControllerLocal
     {
         cabbageCount++;
         CabbageLabel.SetText($"{cabbageCount}x");
+        CheckWin();
     }
     public void ResetCabbage()
     {
         cabbageCount = 0;
+        slugCabbage = 0;
         CabbageLabel.SetText($"{cabbageCount}x");
     }
 
@@ -241,11 +244,34 @@ public class ControllerGame : ControllerLocal
 
     public void GameOver()
     {
-
+        ResetCabbage();
         SoundManager.Instance.Play("game_over");
         IsGameOver = true;
         IsGamePlaying = false;
         Rooms.OnGameOver();  
+    }
+    int slugCabbage = 0;
+
+    public void SlugEatCabbage()
+    {
+        slugCabbage++;
+        CheckWin();
+
+    }
+    List<CabbagePlot> cabbages;
+    public void CheckWin()
+    {
+        if (m_ControllerRooms.CurrentRoom.Id == 1)
+        {
+            if (cabbages == null || cabbages.Count == 0)
+            {
+                cabbages = FindObjectsOfType<CabbagePlot>().ToList();
+            }
+        }
+        if (cabbages.Count == slugCabbage + cabbageCount)
+        {
+            Win();
+        }
     }
 
     public void Win()
@@ -253,9 +279,12 @@ public class ControllerGame : ControllerLocal
         IsGameOver = true;
         IsGamePlaying = false;
 
-        SoundManager.Instance.PlayDelayed("victory", 3.2f);
+        MusicPlayer.Instance.StopPlaying(1f);
+        SoundManager.Instance.PlayDelayed("victory", 1f);
        
-        Invoke(nameof(WinDelayed), 3.2f);
+        Invoke(nameof(WinDelayed), 1f);
+        Invoke(nameof(MusicDelayed), 4f);
+
     }
 
     void WinDelayed()
@@ -263,8 +292,15 @@ public class ControllerGame : ControllerLocal
         Rooms.OnWin();
     }
 
+    void MusicDelayed()
+    {
+        MusicPlayer.Instance.PlayMusic("main_theme", loop:true);
+    }
+
     public void Continue()
     {
+
+       
         SetPlayerMaxHealth(PlayerMaxHealthStarting+ currentMaxHealth);
         player.ChangeHealth(PlayerMaxHealthStarting+ currentMaxHealth);
        

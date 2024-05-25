@@ -156,8 +156,7 @@ public class MusicPlayer : GenericSingleton<MusicPlayer>
 
     public void StopPlaying(float fadeOut = 0)
     {
-
-
+        m_LoopSingle = false;
 
         m_CurrentPlaylist = null;
         if (m_State == PlayState.None)
