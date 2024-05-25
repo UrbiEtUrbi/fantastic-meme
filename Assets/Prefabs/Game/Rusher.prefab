@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 3834701824759130060}
   - component: {fileID: 8946751953216485693}
   - component: {fileID: 8105901736253053725}
+  - component: {fileID: 4548061699730350862}
   m_Layer: 10
   m_Name: Rusher
   m_TagString: Untagged
@@ -224,7 +225,7 @@ MonoBehaviour:
   Speed: 3
   PauseTime: 1
   StunTime: 1
-  _Animator: {fileID: 0}
+  _Animator: {fileID: 4548061699730350862}
   art: {fileID: 3377384375975125766}
   frozenSize: {x: 1, y: 1}
   frozenOffset: {x: 1, y: 1}
@@ -340,3 +341,24 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!95 &4548061699730350862
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753079740626183761}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ea213a38d780e4ae38c30df5aab4cdbf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

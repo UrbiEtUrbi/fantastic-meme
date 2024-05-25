@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4016764330434211415}
   - component: {fileID: 8957590278393454275}
   - component: {fileID: -1542787508581694977}
+  - component: {fileID: 5271050955714517187}
   m_Layer: 9
   m_Name: Slug
   m_TagString: Untagged
@@ -56,7 +57,7 @@ MonoBehaviour:
   Speed: 1.4
   PauseTime: 0
   StunTime: 1
-  _Animator: {fileID: 0}
+  _Animator: {fileID: 5271050955714517187}
   art: {fileID: 749835632754701942}
   frozenSize: {x: 1, y: 1}
   frozenOffset: {x: 1, y: 1}
@@ -162,6 +163,27 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!95 &5271050955714517187
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416048877357843976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d18b280618a7f4e7e873b7b6d0165025, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5722467263740780738
 GameObject:
   m_ObjectHideFlags: 0

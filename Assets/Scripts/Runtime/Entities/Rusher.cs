@@ -52,6 +52,8 @@ public class Rusher : Creature, IPickupCollector
     bool pathSet;
 
 
+
+
     [SerializeField]
     Seeker seeker;
 
@@ -136,6 +138,8 @@ public class Rusher : Creature, IPickupCollector
 
         if (RushTime > 0 && m_RushTimer <= 0 && !waiting)
         {
+            moving = false;
+            _Animator.SetTrigger("Idle");
             PauseTimer = PauseTime;
             waiting = true;
             m_Velocity = default;
@@ -218,6 +222,8 @@ public class Rusher : Creature, IPickupCollector
 
     Vector3 normalizedDir;
 
+
+    bool moving = false;
     void MovePath()
     {
         if (_path == null)
@@ -232,9 +238,17 @@ public class Rusher : Creature, IPickupCollector
         {
             if (_reachedEndOfPath)
             {
+                moving = false;
+                _Animator.SetTrigger("Idle");
                 rb.velocity = default;
                 m_Velocity = default;
                 return;
+            }
+
+            if (!moving)
+            {
+                moving = true;
+                _Animator.SetTrigger("Move");
             }
             Vector2 dir = ((Vector2)_path.vectorPath[_currentPathpoint] - rb.position).normalized;
             m_Velocity += dir * Acceleration * Time.fixedDeltaTime;

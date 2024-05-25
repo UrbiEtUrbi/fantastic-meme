@@ -44,6 +44,9 @@ public class TopDownMovement : MonoBehaviour
     [SerializeField]
     float knockForce;
 
+    [SerializeField]
+    Animator _Animator;
+
 
 
     [HideInInspector]
@@ -111,7 +114,16 @@ public class TopDownMovement : MonoBehaviour
 
 
 
+
+
         m_Rb.velocity = m_Velocity;
+
+        if (_Animator.GetBool("Move") != m_Rb.velocity.magnitude > 0.2f)
+        {
+            _Animator.SetBool("Move", m_Rb.velocity.magnitude > 0.2f);
+        }
+        
+        
 
         KnockForce *= 0.9f;
 
@@ -214,10 +226,12 @@ public class TopDownMovement : MonoBehaviour
     {
         if (jump)
         {
+            _Animator.SetBool("Channel", true);
             Mask.Show();
         }
         else
         {
+            _Animator.SetBool("Channel", false);
             Mask.Hide();
 
         }

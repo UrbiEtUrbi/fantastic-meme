@@ -200,6 +200,11 @@ public class ControllerGame : ControllerLocal
         cabbageCount++;
         CabbageLabel.SetText($"{cabbageCount}x");
     }
+    public void ResetCabbage()
+    {
+        cabbageCount = 0;
+        CabbageLabel.SetText($"{cabbageCount}x");
+    }
 
     IEnumerator WaitForSceneLoad() {
         yield return null;

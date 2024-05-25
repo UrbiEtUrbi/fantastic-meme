@@ -60,6 +60,7 @@ public class ControllerRooms : MonoBehaviour
             {
                 Destroy(m_CurrentRoom.GetComponent<AstarPath>());
             }
+            ControllerGame.Instance.ResetCabbage();
             yield return StartCoroutine(LoadingCoroutine());
         }
     }
