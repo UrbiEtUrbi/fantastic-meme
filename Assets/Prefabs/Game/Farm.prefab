@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickupType: 2
+  sound: pickup_seed
   PickupTime: 5
   RespawnTime: 0
   CollectTime: 0
@@ -953,6 +954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickupType: 1
+  sound: plant_seed
   PickupTime: 3
   RespawnTime: 0
   CollectTime: 0

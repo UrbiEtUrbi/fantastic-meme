@@ -60,7 +60,7 @@ public class ControllerMainMenu : ControllerLocal
                 left = false;
                 pipLeft.gameObject.SetActive(false);
                 pipRight.gameObject.SetActive(true);
-                SoundManager.Instance.Play("jump");
+                SoundManager.Instance.Play("jump_time");
             }
            
         }
@@ -72,7 +72,7 @@ public class ControllerMainMenu : ControllerLocal
                 left = true;
                 pipLeft.gameObject.SetActive(true);
                 pipRight.gameObject.SetActive(false);
-                SoundManager.Instance.Play("jump");
+                SoundManager.Instance.Play("jump_time");
             }
             
         }

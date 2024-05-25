@@ -162,6 +162,7 @@ public class Creature : Entity, IHealth
     public void SetTime(TimeZone TimeZone)
     {
         this.CurrentTimeZone = TimeZone;
+        SoundManager.Instance.CancelAllLoops();
         
     }
 

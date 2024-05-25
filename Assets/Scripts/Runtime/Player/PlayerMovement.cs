@@ -144,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumped)
         {
-            SoundManager.Instance.Play("jump");
+            SoundManager.Instance.Play("jump_time");
             jumped = false;
             rb.velocity = new Vector2(rb.velocity.x, JumpVelocity);
         }

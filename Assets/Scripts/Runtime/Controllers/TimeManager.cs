@@ -26,10 +26,12 @@ public class TimeManager : MonoBehaviour
 
         if (TimeZone == TimeZone.Present) {
             TimeZone = TimeZone.Past;
-            MusicPlayer.Instance.PlayPlaylist("past", fadeIn: 0.5f);
+            MusicPlayer.Instance.PlayMusic("past_theme", loop: true, fadeIn:0.5f);
+            //MusicPlayer.Instance.PlayPlaylist("past", fadeIn: 0.5f);
         } else {
             TimeZone = TimeZone.Present;
-            MusicPlayer.Instance.PlayPlaylist("main", fadeIn: 0.5f);
+            MusicPlayer.Instance.PlayMusic("main_theme", loop: true, fadeIn:0.5f);
+            //MusicPlayer.Instance.PlayPlaylist("main", fadeIn: 0.5f);
         }
         OnSetGlobalTime.Invoke(TimeZone);
 
@@ -54,7 +56,7 @@ public class TimeManager : MonoBehaviour
 
     public void BeforeJump()
     {
-        SoundManager.Instance.Play("jump", ControllerGame.Player.transform);
+        SoundManager.Instance.Play("jump_time", ControllerGame.Player.transform);
         IsJumping = true;
         var allEntities = ControllerGame.ControllerEntities.GetEntities;
 

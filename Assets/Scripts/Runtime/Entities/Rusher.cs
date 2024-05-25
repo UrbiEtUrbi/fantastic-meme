@@ -76,7 +76,6 @@ public class Rusher : Creature, IPickupCollector
        
 
 
-        Debug.Log($"{activationTimer} {CabbagesToActivation}");
         if (activationTimer > 0 || CabbagesToActivation > 0)
         {
 
@@ -138,6 +137,7 @@ public class Rusher : Creature, IPickupCollector
 
         if (RushTime > 0 && m_RushTimer <= 0 && !waiting)
         {
+            SoundManager.Instance.CancelLoop(gameObject);
             moving = false;
             _Animator.SetTrigger("Idle");
             PauseTimer = PauseTime;
@@ -238,6 +238,7 @@ public class Rusher : Creature, IPickupCollector
         {
             if (_reachedEndOfPath)
             {
+                SoundManager.Instance.CancelLoop(gameObject);
                 moving = false;
                 _Animator.SetTrigger("Idle");
                 rb.velocity = default;
@@ -247,6 +248,18 @@ public class Rusher : Creature, IPickupCollector
 
             if (!moving)
             {
+
+                if (CurrentTimeZone == ControllerGame.TimeManager.TimeZone || ControllerGame.TimeManager.IsTimeShiftActive)
+                {
+                    if (RushTime > 0 && target != null)
+                    {
+                        SoundManager.Instance.Play("notDuck_walk", transform);
+                    }
+                    else if (target != null)
+                    {
+                        SoundManager.Instance.PlayLooped("slug_run", gameObject, transform);
+                    }
+                }
                 moving = true;
                 _Animator.SetTrigger("Move");
             }

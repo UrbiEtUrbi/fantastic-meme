@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickupType: 2
+  sound: cabbage_collect
   PickupTime: 3
   RespawnTime: 0.5
   CollectTime: 0

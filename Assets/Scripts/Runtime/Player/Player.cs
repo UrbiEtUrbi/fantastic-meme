@@ -57,7 +57,7 @@ public class Player : MonoBehaviour, IHealth, IPickupCollector
                 }
                 else
                 {
-                    SoundManager.Instance.Play("player_die");
+
                     IFrameTime = IFrames;
 
                 }

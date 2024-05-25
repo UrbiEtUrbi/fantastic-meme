@@ -8,6 +8,7 @@ public abstract class PickupHandler : MonoBehaviour
 {
 
     public PickupType PickupType;
+    [SerializeField]
     string sound;
 
     [SerializeField]
