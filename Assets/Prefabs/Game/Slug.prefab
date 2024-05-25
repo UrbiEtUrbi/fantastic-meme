@@ -68,6 +68,8 @@ MonoBehaviour:
   RushTime: 0
   targetCabbage: 1
   StopDistance: 0.2
+  TimeToActvivation: 0
+  CabbagesToActivation: 0
   seeker: {fileID: -1542787508581694977}
   UpdatePathTime: 0.2
 --- !u!50 &4016764330434211415
