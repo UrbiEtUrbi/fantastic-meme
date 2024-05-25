@@ -50,7 +50,7 @@ MonoBehaviour:
     PlaySubitemType: 1
     soundItems:
     - AudioClip: {fileID: 8300000, guid: 46aa3ff8d674a47ddb8c59aed3560f04, type: 3}
-    Volume: -0.2
+    Volume: -0.3
     PitchShift: 0
     RandomPitch: 0
     DopplerLevel: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
     PlaySubitemType: 1
     soundItems:
     - AudioClip: {fileID: 8300000, guid: d6946aaf6a12b485b8540c72475b155f, type: 3}
-    Volume: -0.1
+    Volume: -0.15
     PitchShift: 0
     RandomPitch: 0
     DopplerLevel: 0
@@ -114,7 +114,7 @@ MonoBehaviour:
     PlaySubitemType: 1
     soundItems:
     - AudioClip: {fileID: 8300000, guid: bd45658d738de4c14a7793b2ad1bfc02, type: 3}
-    Volume: -0.2
+    Volume: -0.3
     PitchShift: 0
     RandomPitch: 0
     DopplerLevel: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
     PlaySubitemType: 1
     soundItems:
     - AudioClip: {fileID: 8300000, guid: 01498e05fcbbc4f17b46355ec0d7d4a7, type: 3}
-    Volume: -0.2
+    Volume: -0.3
     PitchShift: 0
     RandomPitch: 0
     DopplerLevel: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
     PlaySubitemType: 1
     soundItems:
     - AudioClip: {fileID: 8300000, guid: 8d29b037c4e1c424c931516c5b9c8120, type: 3}
-    Volume: 0
+    Volume: -0.2
     PitchShift: 0
     RandomPitch: 0
     DopplerLevel: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
     PlaySubitemType: 1
     soundItems:
     - AudioClip: {fileID: 8300000, guid: 055b5a3527e0e4e008dae1a1e2ec27e8, type: 3}
-    Volume: -0.1
+    Volume: 0.15
     PitchShift: 0
     RandomPitch: 0
     DopplerLevel: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
     PlaySubitemType: 1
     soundItems:
     - AudioClip: {fileID: 8300000, guid: 5a1f1558b9e1d4792a260f9534286a52, type: 3}
-    Volume: 0
+    Volume: -0.15
     PitchShift: 0
     RandomPitch: 0
     DopplerLevel: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
     PlaySubitemType: 1
     soundItems:
     - AudioClip: {fileID: 8300000, guid: 65a837b36c73441618cbc20d6000b2ff, type: 3}
-    Volume: 0
+    Volume: -0.15
     PitchShift: 0
     RandomPitch: 0
     DopplerLevel: 0
