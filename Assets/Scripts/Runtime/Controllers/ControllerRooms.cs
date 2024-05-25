@@ -51,9 +51,16 @@ public class ControllerRooms : MonoBehaviour
 
         NextRoom = m_Rooms.Find(x => x.Id == room);
         nextEntrance = entrance;
+
+       
+
         if (NextRoom && NextRoom.HasEntrance(nextEntrance))
         {
-           yield return StartCoroutine(LoadingCoroutine());
+            if (m_CurrentRoom != null)
+            {
+                Destroy(m_CurrentRoom.GetComponent<AstarPath>());
+            }
+            yield return StartCoroutine(LoadingCoroutine());
         }
     }
 

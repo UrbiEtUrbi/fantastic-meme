@@ -71,17 +71,26 @@ public class Rusher : Creature, IPickupCollector
     protected override void Start()
     {
         base.Start();
-        if (targetCabbage)
-        {
-            cabbagePlots = FindObjectsByType<CabbagePlot>(sortMode: FindObjectsSortMode.None).ToList();
-        }
+       
 
+
+        Debug.Log($"{activationTimer} {CabbagesToActivation}");
         if (activationTimer > 0 || CabbagesToActivation > 0)
         {
 
+            Debug.Log("wait");
             art.enabled = false;
             isEnabled = false;
             StartCoroutine(WaitForActivation());
+        }
+        else
+        {
+            art.enabled = true;
+            isEnabled = true;
+            if (targetCabbage)
+            {
+                cabbagePlots = FindObjectsByType<CabbagePlot>(sortMode: FindObjectsSortMode.None).ToList();
+            }
         }
         
     }
@@ -98,6 +107,10 @@ public class Rusher : Creature, IPickupCollector
             {
                 art.enabled = true;
                 isEnabled = true;
+                if (targetCabbage)
+                {
+                    cabbagePlots = FindObjectsByType<CabbagePlot>(sortMode: FindObjectsSortMode.None).ToList();
+                }
                 break;
             }
            
@@ -115,7 +128,10 @@ public class Rusher : Creature, IPickupCollector
             
         }
 
-       
+        if (targetCabbage && cabbagePlots.Any(x => x == null))
+        {
+            cabbagePlots = FindObjectsByType<CabbagePlot>(sortMode: FindObjectsSortMode.None).ToList();   
+        }
 
 
         if (RushTime > 0 && m_RushTimer <= 0 && !waiting)
@@ -184,7 +200,7 @@ public class Rusher : Creature, IPickupCollector
 
     void CheckPath()
     {
-        if (UpdatePathTimer <= 0 || !pathSet && seeker.IsDone())
+        if (UpdatePathTimer <= 0 || !pathSet && seeker.IsDone() && ControllerGame.Instance.IsGamePlaying)
         {
             if (target)
             {

@@ -167,19 +167,31 @@ public class Creature : Entity, IHealth
 
     public void UpdateMaskAfterJump()
     {
+        if (!isEnabled)
+        {
+            return;
+        }
         art.maskInteraction = ControllerGame.TimeManager.TimeZone == CurrentTimeZone ? SpriteMaskInteraction.None : SpriteMaskInteraction.VisibleInsideMask;
         UpdateLayer();
     }
 
     public void UpdateLayer(bool inTimeshift = false)
     {
-      
+
+        if (!isEnabled)
+        {
+            return;
+        }
         gameObject.layer = ControllerGame.TimeManager.TimeZone == CurrentTimeZone || inTimeshift ? LayerMask.NameToLayer("Enemy") : LayerMask.NameToLayer("EnemyDifferentTZ");
         Debug.Log($"set {name} layer to {LayerMask.LayerToName(gameObject.layer)}");
     }
 
     public void UpdateMaskBeforeJump(bool inTimeShift = false)
     {
+        if (!isEnabled)
+        {
+            return;
+        }
 
         art.maskInteraction = ControllerGame.TimeManager.TimeZone == CurrentTimeZone ? SpriteMaskInteraction.VisibleOutsideMask : SpriteMaskInteraction.VisibleInsideMask;
         UpdateLayer(inTimeShift);

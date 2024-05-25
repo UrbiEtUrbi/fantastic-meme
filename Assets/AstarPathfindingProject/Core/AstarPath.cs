@@ -1934,7 +1934,7 @@ public class AstarPath : VersionedMonoBehaviour {
 		var astar = active;
 
 		if (System.Object.ReferenceEquals(astar, null)) {
-			Debug.LogError("There is no AstarPath object in the scene or it has not been initialized yet");
+//			Debug.LogError("There is no AstarPath object in the scene or it has not been initialized yet");
 			return;
 		}
 

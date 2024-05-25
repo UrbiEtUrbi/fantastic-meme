@@ -322,10 +322,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 1.6187501
-    width: 1
-    height: 1
+    x: 0.04047619
+    y: 1.7187501
+    width: 0.8
+    height: 0.8000001
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -1432,6 +1432,7 @@ MonoBehaviour:
   HasIceMelee: 0
   initRoom: 0
   initEntrance: 0
+  cabbageCount: 0
 --- !u!114 &2089064011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1448,6 +1449,7 @@ MonoBehaviour:
   transitionOut: {fileID: 359797240}
   m_Rooms:
   - {fileID: -1065872788859246324, guid: 7076be4fbcdec40ddbcd3c159b672882, type: 3}
+  - {fileID: -1065872788859246324, guid: 40af763466fc348bdb71f0165f222cfb, type: 3}
   GameOverText: {fileID: 91322270}
   Scene:
     sceneReference: {fileID: 102900000, guid: db48ccbb5771f4b9b9494d22ae846179, type: 3}
