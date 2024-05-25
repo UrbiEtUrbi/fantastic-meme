@@ -119,6 +119,7 @@ public class MusicPlayer : GenericSingleton<MusicPlayer>
 
     public void PlayMusic(string musicName, float fadeIn = 0, bool loop = false, float crossFade= 0, params int[] layers)
     {
+       // return;
         Debug.Log($"queued {musicName}");
         m_QueuedTrack = musicName;
         m_QueuedLayers = layers;
@@ -417,8 +418,9 @@ public class MusicPlayer : GenericSingleton<MusicPlayer>
                     if (m_LoopSingle)
                     {
                         Debug.Log($"PLAY {m_QueuedTrack}");
+                       // PlayTrack(m_QueuedTrack, ref m_Current);
                         PlayTrack(m_QueuedTrack, ref m_Next);
-                      
+
                         StartCoroutine(CurrentTracker = CrossFadeCoroutine(m_CrossfadeTimeSingle));
                     }
 

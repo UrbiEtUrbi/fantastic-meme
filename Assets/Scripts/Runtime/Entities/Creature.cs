@@ -162,7 +162,7 @@ public class Creature : Entity, IHealth
     public void SetTime(TimeZone TimeZone)
     {
         this.CurrentTimeZone = TimeZone;
-        SoundManager.Instance.CancelAllLoops();
+        SoundManager.Instance.CancelLoop(gameObject);
         
     }
 
@@ -184,7 +184,7 @@ public class Creature : Entity, IHealth
             return;
         }
         gameObject.layer = ControllerGame.TimeManager.TimeZone == CurrentTimeZone || inTimeshift ? LayerMask.NameToLayer("Enemy") : LayerMask.NameToLayer("EnemyDifferentTZ");
-        Debug.Log($"set {name} layer to {LayerMask.LayerToName(gameObject.layer)}");
+///        Debug.Log($"set {name} layer to {LayerMask.LayerToName(gameObject.layer)}");
     }
 
     public void UpdateMaskBeforeJump(bool inTimeShift = false)

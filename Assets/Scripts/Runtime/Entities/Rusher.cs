@@ -147,14 +147,13 @@ public class Rusher : Creature, IPickupCollector
 
         }
 
-        bool canTargetCabbage = targetCabbage && CurrentTimeZone == TimeZone.Present;
+        bool canTargetCabbage = targetCabbage && CurrentTimeZone == TimeZone.Present && cabbagePlots.Any(x => x.View != null);
         bool isChasingCabbage = targetCabbage && cabbagePlots.Any(x => x.transform == target);
         bool canTargetPlayer =  Vector3.Distance(ControllerGame.Player.transform.position, transform.position) < ActivationDistance &&
             (ControllerGame.TimeManager.IsTimeShiftActive || ControllerGame.TimeManager.TimeZone == CurrentTimeZone);
 
         if (canTargetCabbage && !isChasingCabbage)
         {
-
             cabbagePlots = cabbagePlots.OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).ToList();
             foreach (var c in cabbagePlots)
             {
@@ -166,6 +165,12 @@ public class Rusher : Creature, IPickupCollector
                     break;
                 }
             }
+        }
+
+        if (isChasingCabbage && !canTargetCabbage)
+        {
+            pathSet = false;
+            target = null;
         }
 
         if (canTargetPlayer && !isChasingCabbage && target == null)
@@ -240,7 +245,8 @@ public class Rusher : Creature, IPickupCollector
             {
                 SoundManager.Instance.CancelLoop(gameObject);
                 moving = false;
-                _Animator.SetTrigger("Idle");
+                
+                //_Animator.SetTrigger("Idle");
                 rb.velocity = default;
                 m_Velocity = default;
                 return;

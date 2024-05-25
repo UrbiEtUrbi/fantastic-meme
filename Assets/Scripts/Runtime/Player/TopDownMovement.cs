@@ -134,6 +134,7 @@ public class TopDownMovement : MonoBehaviour
             if (m_Rb.velocity.magnitude > 0.1f)
             {
                 playingRun = true;
+                Debug.Log($"play duck run");
                 SoundManager.Instance.PlayLooped("duck_run", source: gameObject, transform);
             }
         }
