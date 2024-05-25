@@ -218,7 +218,7 @@ public class ControllerGame : ControllerLocal
         VCamera.Follow = player.transform;
 
 
-        MusicPlayer.Instance.PlayMusic("main_theme", loop: true);
+       // MusicPlayer.Instance.PlayMusic("main_theme", loop: true);
        //MusicPlayer.Instance.PlayPlaylist("main");
 
     }
@@ -279,7 +279,7 @@ public class ControllerGame : ControllerLocal
         IsGameOver = true;
         IsGamePlaying = false;
 
-        MusicPlayer.Instance.StopPlaying(1f);
+       
         SoundManager.Instance.PlayDelayed("victory", 1f);
        
         Invoke(nameof(WinDelayed), 1f);
@@ -289,12 +289,13 @@ public class ControllerGame : ControllerLocal
 
     void WinDelayed()
     {
+        TimeManager.PlayMusic(false);
         Rooms.OnWin();
     }
 
     void MusicDelayed()
     {
-        MusicPlayer.Instance.PlayMusic("main_theme", loop:true);
+        TimeManager.PlayMusic(true);
     }
 
     public void Continue()

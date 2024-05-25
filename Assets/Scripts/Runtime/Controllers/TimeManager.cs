@@ -15,10 +15,20 @@ public class TimeManager : MonoBehaviour
 
     bool IsJumping;
 
+    [SerializeField]
+    float MusicVolume = 0.5f;
+
     private void Start()
     {
         TimeZone = TimeZone.Present;
+        MusicPresent.Play();
+        MusicPresent.volume = MusicVolume;
+        MusicPast.volume = 0;
+        MusicPast.Play();
     }
+
+    [SerializeField]
+    AudioSource MusicPresent, MusicPast;
 
     public void Flip()
     {
@@ -26,13 +36,14 @@ public class TimeManager : MonoBehaviour
 
         if (TimeZone == TimeZone.Present) {
             TimeZone = TimeZone.Past;
-            MusicPlayer.Instance.PlayMusic("past_theme", loop: true, fadeIn:0.5f);
+           // MusicPlayer.Instance.PlayMusic("past_theme", loop: true, fadeIn:0.5f);
             //MusicPlayer.Instance.PlayPlaylist("past", fadeIn: 0.5f);
         } else {
             TimeZone = TimeZone.Present;
-            MusicPlayer.Instance.PlayMusic("main_theme", loop: true, fadeIn:0.5f);
+
             //MusicPlayer.Instance.PlayPlaylist("main", fadeIn: 0.5f);
         }
+        Music();
         OnSetGlobalTime.Invoke(TimeZone);
 
         var allEntities = ControllerGame.ControllerEntities.GetEntities;
@@ -70,6 +81,36 @@ public class TimeManager : MonoBehaviour
 
         }
 
+    }
+
+    public void PlayMusic(bool play)
+    {
+
+        if (play)
+        {
+            MusicPresent.Play();
+            MusicPast.Play();
+        }
+        else
+        {
+            MusicPresent.Stop();
+            MusicPast.Stop();
+        }
+    }
+
+    public void Music()
+    {
+        if (TimeZone == TimeZone.Present)
+        {
+            MusicPresent.volume = MusicVolume;
+            MusicPast.volume = 0;
+        }
+        else
+        {
+            MusicPresent.volume = 0;
+            MusicPast.volume = MusicVolume;
+        }
+      
     }
 
     public void UnShiftEnemies()
